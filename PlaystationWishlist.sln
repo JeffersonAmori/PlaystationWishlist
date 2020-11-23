@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationGamesLoadWebJob", "PlaystationGamesLoadWebJob\PlaystationGamesLoadWebJob.csproj", "{2C3946A7-4E35-44A4-B36F-8956AB832970}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D7A80096-D2E1-44E2-91F5-B1F40EBA4FBD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GamesLoad", "GamesLoad", "{FD950E5D-F39E-40F8-A8BB-46F5A46F3A9F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GamesImporter", "GamesImporter", "{FD950E5D-F39E-40F8-A8BB-46F5A46F3A9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationGamesLoadScrapper", "PlaystationGamesLoadScrapper\PlaystationGamesLoadScrapper.csproj", "{8F7057A5-3603-4ED5-9DF5-E921AFEAEEFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationGamesImporterWebJob", "PlaystationGamesImporterWebJob\PlaystationGamesImporterWebJob.csproj", "{8530039B-23FD-4B8A-84CC-8662804AC2F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationGamesImporterScrapper", "PlaystationGamesImporterScrapper\PlaystationGamesImporterScrapper.csproj", "{132B12A0-4224-4255-BF9A-AF72F1819AB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{9795F0BF-7D9B-44A0-8919-30FAEABEB2C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,22 +19,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2C3946A7-4E35-44A4-B36F-8956AB832970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C3946A7-4E35-44A4-B36F-8956AB832970}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C3946A7-4E35-44A4-B36F-8956AB832970}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C3946A7-4E35-44A4-B36F-8956AB832970}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F7057A5-3603-4ED5-9DF5-E921AFEAEEFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F7057A5-3603-4ED5-9DF5-E921AFEAEEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F7057A5-3603-4ED5-9DF5-E921AFEAEEFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F7057A5-3603-4ED5-9DF5-E921AFEAEEFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8530039B-23FD-4B8A-84CC-8662804AC2F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8530039B-23FD-4B8A-84CC-8662804AC2F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8530039B-23FD-4B8A-84CC-8662804AC2F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8530039B-23FD-4B8A-84CC-8662804AC2F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132B12A0-4224-4255-BF9A-AF72F1819AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132B12A0-4224-4255-BF9A-AF72F1819AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132B12A0-4224-4255-BF9A-AF72F1819AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132B12A0-4224-4255-BF9A-AF72F1819AB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2C3946A7-4E35-44A4-B36F-8956AB832970} = {FD950E5D-F39E-40F8-A8BB-46F5A46F3A9F}
 		{FD950E5D-F39E-40F8-A8BB-46F5A46F3A9F} = {D7A80096-D2E1-44E2-91F5-B1F40EBA4FBD}
-		{8F7057A5-3603-4ED5-9DF5-E921AFEAEEFA} = {FD950E5D-F39E-40F8-A8BB-46F5A46F3A9F}
+		{8530039B-23FD-4B8A-84CC-8662804AC2F9} = {FD950E5D-F39E-40F8-A8BB-46F5A46F3A9F}
+		{132B12A0-4224-4255-BF9A-AF72F1819AB6} = {FD950E5D-F39E-40F8-A8BB-46F5A46F3A9F}
+		{9795F0BF-7D9B-44A0-8919-30FAEABEB2C4} = {D7A80096-D2E1-44E2-91F5-B1F40EBA4FBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8ABC309-DD14-493A-8DFA-14E4FFC74FF6}
