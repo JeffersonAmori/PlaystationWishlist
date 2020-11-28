@@ -4,6 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.23" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="4.0.1" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="4.0.3" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Logging.ApplicationInsights" Version="3.0.23" />
@@ -15,12 +18,19 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PlaystationGamesImporterScrapper\PlaystationGamesImporterScrapper.csproj" />
+    <ProjectReference Include="..\PlaystationWishlist.AutoMapper\PlaystationWishlist.AutoMapper.csproj" />
     <ProjectReference Include="..\PlaystationWishlist.Core\PlaystationWishlist.Core.csproj" />
     <ProjectReference Include="..\PlaystationWishlist.Infrastructure\PlaystationWishlist.DataAccess.csproj" />
     <ProjectReference Include="..\PlaystationWishlist.KeyVault\PlaystationWishlist.KeyVault.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Settings.job">

@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlaystationWishlist.AutoMapper\PlaystationWishlist.AutoMapper.csproj" />
+    <ProjectReference Include="..\PlaystationWishlist.Core\PlaystationWishlist.Core.csproj" />
+    <ProjectReference Include="..\PlaystationWishlist.Infrastructure\PlaystationWishlist.DataAccess.csproj" />
   </ItemGroup>
 
 

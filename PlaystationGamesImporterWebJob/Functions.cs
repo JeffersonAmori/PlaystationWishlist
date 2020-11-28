@@ -1,11 +1,10 @@
-﻿using Microsoft.Azure.WebJobs;
+﻿using AutoMapper;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using PlaystationGamesLoadScrapper;
-using PlaystationWishlist.Core.Interfaces;
 using PlaystationWishlist.DataAccess.Data;
 using System;
 using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -13,7 +12,14 @@ namespace PlaystationGamesImporterWebJob
 {
     public class Functions
     {
-        public static async Task ProcessTimerAction([TimerTrigger("0 0 * * *", RunOnStartup = true)]TimerInfo timerInfo, ILogger logger)
+        private IMapper _mapper;
+
+        public Functions()
+        {
+            _mapper = (IMapper)ServiceLocator.Instance.GetService(typeof(IMapper));
+        }
+
+        public async Task ProcessTimerAction([TimerTrigger("0 * * * *", RunOnStartup = true)] TimerInfo timerInfo, ILogger logger)
         {
             try
             {
@@ -29,17 +35,7 @@ namespace PlaystationGamesImporterWebJob
                     var culture = new CultureInfo(region);
                     foreach (var game in await PlaystationStoreScrapper.GetAllGames(region))
                     {
-                        dbContext.PlaystationGames.Add(new PlaystationWishlist.DataAccess.Models.PlaystationGame()
-                        {
-                            Currency = game.FinalPrice != null ? (game.FinalPrice.Any(char.IsDigit) ? currencyRegex.Match(game.FinalPrice).Value : null) : null,
-                            DiscountDescriptor = game.DiscountDescriptor,
-                            FinalPrice = game.FinalPrice != null ? (game.FinalPrice.Any(char.IsDigit) ? (game.FinalPrice != null ? (decimal?)decimal.Parse(priceRegex.Match(game.FinalPrice).Value, culture) : null) : 0) : 0,
-                            LastUpdataded = DateTime.UtcNow,
-                            Name = game.Name,
-                            OriginalPrice = game.OriginalPrice != null ? (game.OriginalPrice.Any(char.IsDigit) ? (game.OriginalPrice != null ? (decimal?)decimal.Parse(priceRegex.Match(game.OriginalPrice).Value, culture) : null) : null) : null,
-                            Url = game.Url,
-                            Region = game.Region
-                        });
+                        dbContext.PlaystationGames.Add(_mapper.Map<PlaystationWishlist.DataAccess.Models.PlaystationGame>(game));
                     }
                 }
 

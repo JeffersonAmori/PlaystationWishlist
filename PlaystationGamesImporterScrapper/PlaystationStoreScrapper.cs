@@ -4,6 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace PlaystationGamesLoadScrapper
             var htmlWeb = new HtmlWeb();
             IList<PlaystationGame> gamesList = new List<PlaystationGame>();
             ConcurrentBag<Task> listOfTasks = new ConcurrentBag<Task>();
+            Regex currencyRegex = new Regex(@".+?(?= ?\d)");
 
             foreach (var region in regions)
             {
@@ -63,10 +65,10 @@ namespace PlaystationGamesLoadScrapper
                                 string gameFinalPrice = gamePage.DocumentNode.Descendants().Where(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#finalPrice").FirstOrDefault()?.InnerText;
                                 string gameOriginalPrice = gamePage.DocumentNode.Descendants().Where(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#originalPrice").FirstOrDefault()?.InnerText;
                                 string gameDescountDescriptor = gamePage.DocumentNode.Descendants().Where(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#discountDescriptor").FirstOrDefault()?.InnerText;
-
+                                string gameCurrency = currencyRegex.Match(gameFinalPrice).Value;
                                 Console.WriteLine($"{count++} - {gameName} - {gameFinalPrice} - {gameOriginalPrice} - {gameDescountDescriptor}");
 
-                                gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDescountDescriptor, gameUrl, region));
+                                gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDescountDescriptor, gameUrl, region, gameCurrency));
                             });
                         listOfTasks.Add(_);
                     }

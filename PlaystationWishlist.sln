@@ -25,6 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{FBD7AA9E-5F16-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlistAPI", "PlaystationWishlistAPI\PlaystationWishlistAPI.csproj", "{F0DA2739-1FED-40BE-88C8-4C0EF07457A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlistWebSite", "PlaystationWishlistWebSite\PlaystationWishlistWebSite.csproj", "{EFEF37B1-814C-4069-A416-1A91CC434C05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlist.AutoMapper", "PlaystationWishlist.AutoMapper\PlaystationWishlist.AutoMapper.csproj", "{08338ED4-1DF9-4793-85CE-56A669AEACDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,14 @@ Global
 		{F0DA2739-1FED-40BE-88C8-4C0EF07457A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0DA2739-1FED-40BE-88C8-4C0EF07457A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0DA2739-1FED-40BE-88C8-4C0EF07457A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFEF37B1-814C-4069-A416-1A91CC434C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFEF37B1-814C-4069-A416-1A91CC434C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFEF37B1-814C-4069-A416-1A91CC434C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFEF37B1-814C-4069-A416-1A91CC434C05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08338ED4-1DF9-4793-85CE-56A669AEACDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08338ED4-1DF9-4793-85CE-56A669AEACDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08338ED4-1DF9-4793-85CE-56A669AEACDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08338ED4-1DF9-4793-85CE-56A669AEACDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +82,8 @@ Global
 		{EA492D7C-FE6F-4B73-AEAE-72CFA8199B9F} = {C70B6BA5-7A46-42C6-9569-30B309BBCEBE}
 		{FBD7AA9E-5F16-452A-9513-8EEB9B45D65A} = {D7A80096-D2E1-44E2-91F5-B1F40EBA4FBD}
 		{F0DA2739-1FED-40BE-88C8-4C0EF07457A1} = {FBD7AA9E-5F16-452A-9513-8EEB9B45D65A}
+		{EFEF37B1-814C-4069-A416-1A91CC434C05} = {FBD7AA9E-5F16-452A-9513-8EEB9B45D65A}
+		{08338ED4-1DF9-4793-85CE-56A669AEACDB} = {C70B6BA5-7A46-42C6-9569-30B309BBCEBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8ABC309-DD14-493A-8DFA-14E4FFC74FF6}

@@ -7,8 +7,11 @@ using System.Text;
 
 namespace PlaystationWishlist.DataAccess.Data
 {
-    public class PlaystationWishlistContext : DbContext, IPlaystationWishlistDbContext
+    public sealed class PlaystationWishlistContext : DbContext, IPlaystationWishlistDbContext
     {
+        public PlaystationWishlistContext() { }
+        public PlaystationWishlistContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
+
         public DbSet<PlaystationGame> PlaystationGames { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

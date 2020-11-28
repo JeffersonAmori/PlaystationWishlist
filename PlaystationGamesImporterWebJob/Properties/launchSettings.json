@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PlaystationGamesImporterWebJob": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
