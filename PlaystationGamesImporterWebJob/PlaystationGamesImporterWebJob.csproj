@@ -22,15 +22,10 @@
     <ProjectReference Include="..\PlaystationWishlist.Core\PlaystationWishlist.Core.csproj" />
     <ProjectReference Include="..\PlaystationWishlist.Infrastructure\PlaystationWishlist.DataAccess.csproj" />
     <ProjectReference Include="..\PlaystationWishlist.KeyVault\PlaystationWishlist.KeyVault.csproj" />
+    <ProjectReference Include="..\PlaystationWishlistWebSite.Models\PlaystationWishlistWebSite.Models.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="appsettings.Development.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="local.settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Settings.job">

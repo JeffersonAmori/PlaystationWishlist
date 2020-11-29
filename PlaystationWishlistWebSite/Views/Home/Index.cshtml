@@ -1,8 +1,40 @@
-﻿@{
+﻿@model IEnumerable<PlaystationWishlistWebSite.Models.GamesViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Playstation Wishlist</h1>
+    <div>
+        
+        <form asp-action="Index" asp-antiforgery="true" method="post">
+            <text name="term" />
+            <input type="submit" value="Search" class="btn btn-primary"/>
+        </form>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(m => m.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.FinalPrice)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.OriginalPrice)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.Url)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.DiscountDescriptor)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in @Model)
+            {
+                <tr>
+                    <th>@Html.DisplayFor(m => game.Name)</th>
+                    <th>@Html.DisplayFor(m => game.FinalPrice)</th>
+                    <th>@Html.DisplayFor(m => game.OriginalPrice)</th>
+                    <th><a class="btn-link" href="@game.Url">Game page</a></th>
+                    <th>@Html.DisplayFor(m => game.DiscountDescriptor)</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+
 </div>

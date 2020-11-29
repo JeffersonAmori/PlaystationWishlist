@@ -23,11 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlist.KeyVaul
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{FBD7AA9E-5F16-452A-9513-8EEB9B45D65A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlistAPI", "PlaystationWishlistAPI\PlaystationWishlistAPI.csproj", "{F0DA2739-1FED-40BE-88C8-4C0EF07457A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlistAPI", "PlaystationWishlistAPI\PlaystationWishlistAPI.csproj", "{F0DA2739-1FED-40BE-88C8-4C0EF07457A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlistWebSite", "PlaystationWishlistWebSite\PlaystationWishlistWebSite.csproj", "{EFEF37B1-814C-4069-A416-1A91CC434C05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlistWebSite", "PlaystationWishlistWebSite\PlaystationWishlistWebSite.csproj", "{EFEF37B1-814C-4069-A416-1A91CC434C05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlist.AutoMapper", "PlaystationWishlist.AutoMapper\PlaystationWishlist.AutoMapper.csproj", "{08338ED4-1DF9-4793-85CE-56A669AEACDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlist.AutoMapper", "PlaystationWishlist.AutoMapper\PlaystationWishlist.AutoMapper.csproj", "{08338ED4-1DF9-4793-85CE-56A669AEACDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlistWebSite.Models", "PlaystationWishlistWebSite.Models\PlaystationWishlistWebSite.Models.csproj", "{C5FA5A5A-9913-4EFD-BE8C-A836FD892A42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{08338ED4-1DF9-4793-85CE-56A669AEACDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08338ED4-1DF9-4793-85CE-56A669AEACDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08338ED4-1DF9-4793-85CE-56A669AEACDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5FA5A5A-9913-4EFD-BE8C-A836FD892A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5FA5A5A-9913-4EFD-BE8C-A836FD892A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5FA5A5A-9913-4EFD-BE8C-A836FD892A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5FA5A5A-9913-4EFD-BE8C-A836FD892A42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{F0DA2739-1FED-40BE-88C8-4C0EF07457A1} = {FBD7AA9E-5F16-452A-9513-8EEB9B45D65A}
 		{EFEF37B1-814C-4069-A416-1A91CC434C05} = {FBD7AA9E-5F16-452A-9513-8EEB9B45D65A}
 		{08338ED4-1DF9-4793-85CE-56A669AEACDB} = {C70B6BA5-7A46-42C6-9569-30B309BBCEBE}
+		{C5FA5A5A-9913-4EFD-BE8C-A836FD892A42} = {FBD7AA9E-5F16-452A-9513-8EEB9B45D65A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8ABC309-DD14-493A-8DFA-14E4FFC74FF6}

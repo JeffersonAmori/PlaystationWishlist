@@ -14,11 +14,11 @@ namespace PlaystationGamesLoadScrapper
     {
         private static readonly string basePsnAddress = "https://store.playstation.com";
 
-        public async static Task<IEnumerable<PlaystationGame>> GetAllGames(params string[] regions)
+        public static async Task<IEnumerable<PlaystationGame>> GetAllGames(params string[] regions)
         {
-            int count = 1;
-            int pageNumber = 1;
-            bool isLastPage = false;
+            var count = 1;
+            var pageNumber = 1;
+            var isLastPage = false;
             var htmlWeb = new HtmlWeb();
             IList<PlaystationGame> gamesList = new List<PlaystationGame>();
             ConcurrentBag<Task> listOfTasks = new ConcurrentBag<Task>();
@@ -29,7 +29,7 @@ namespace PlaystationGamesLoadScrapper
                 do
                 {
                     var doc = htmlWeb.Load($"{basePsnAddress}/{region}/category/85448d87-aa7b-4318-9997-7d25f4d275a4/{pageNumber++}");
-                    if (doc.DocumentNode.Descendants().Where(d => d.Attributes["data-qa"]?.Value == "ems-sdk-grid-paginator-next-page-btn" && (bool)d.Attributes["class"]?.Value.Contains("psw-is-disabled")).Any())
+                    if (doc.DocumentNode.Descendants().Any(d => d.Attributes["data-qa"]?.Value == "ems-sdk-grid-paginator-next-page-btn" && (bool)d.Attributes["class"]?.Value.Contains("psw-is-disabled")))
                     {
                         isLastPage = true;
                     }
@@ -38,7 +38,7 @@ namespace PlaystationGamesLoadScrapper
                     {
                         PlaystationGame playstationGame = null;
 
-                        string gameUrl = basePsnAddress + link.Attributes["href"].Value;
+                        var gameUrl = basePsnAddress + link.Attributes["href"].Value;
                         var _ = Task.Run(() =>
                         {
                             int retryCount = 0;
@@ -61,14 +61,15 @@ namespace PlaystationGamesLoadScrapper
                             .ContinueWith(async gamePageTask =>
                             {
                                 var gamePage = await gamePageTask;
-                                string gameName = gamePage.DocumentNode.Descendants().Where(d => d.Attributes["data-qa"]?.Value == "mfe-game-title#name").FirstOrDefault()?.InnerText;
-                                string gameFinalPrice = gamePage.DocumentNode.Descendants().Where(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#finalPrice").FirstOrDefault()?.InnerText;
-                                string gameOriginalPrice = gamePage.DocumentNode.Descendants().Where(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#originalPrice").FirstOrDefault()?.InnerText;
-                                string gameDescountDescriptor = gamePage.DocumentNode.Descendants().Where(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#discountDescriptor").FirstOrDefault()?.InnerText;
-                                string gameCurrency = currencyRegex.Match(gameFinalPrice).Value;
-                                Console.WriteLine($"{count++} - {gameName} - {gameFinalPrice} - {gameOriginalPrice} - {gameDescountDescriptor}");
+                                var gameName = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfe-game-title#name")?.InnerText;
+                                var gameFinalPrice = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#finalPrice")?.InnerText;
+                                var gameOriginalPrice = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#originalPrice")?.InnerText;
+                                var gameDiscountDescriptor = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#discountDescriptor")?.InnerText;
+                                var gameCurrency = currencyRegex.Match(gameFinalPrice ?? string.Empty).Value;
+                                gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDiscountDescriptor, gameUrl, region, gameCurrency));
 
-                                gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDescountDescriptor, gameUrl, region, gameCurrency));
+                                Console.WriteLine($"{count++} - {gameName} - {gameFinalPrice} - {gameOriginalPrice} - {gameDiscountDescriptor}");
+
                             });
                         listOfTasks.Add(_);
                     }

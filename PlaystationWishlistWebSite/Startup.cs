@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using PlaystationWishlist.AutoMapper;
+using PlaystationWishlist.Core.Entities;
 
 namespace PlaystationWishlistWebSite
 {
@@ -24,6 +27,8 @@ namespace PlaystationWishlistWebSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient();
+            services.AddAutoMapper(typeof(PlaystationGameProfile).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

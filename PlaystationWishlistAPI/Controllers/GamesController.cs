@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PlaystationWishlist.Core.Entities;
 
 namespace PlaystationWishlistAPI.Controllers
 {
@@ -24,15 +25,16 @@ namespace PlaystationWishlistAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{gameName}")]
-        public IActionResult Get(string gameName)
+        [Route("{gameName?}")]
+        public IActionResult Get(string gameName = "")
         {
-            var a = _playstationWishlistDbContext.PlaystationGames.ToList();
+            var playstationGames = string.IsNullOrEmpty(gameName)
+                ? _playstationWishlistDbContext.PlaystationGames.Where(g => g.OriginalPrice != null).OrderBy(g => g.Name)
+                : _playstationWishlistDbContext.PlaystationGames.Where(g => g.Name.Contains(gameName));
 
             return Ok(
-                _mapper.Map<List<PlaystationWishlist.Core.Entities.PlaystationGame>>(
-                    _playstationWishlistDbContext.PlaystationGames
-                        .Where(g => g.Name.Contains(gameName))));
+                _mapper.Map<List<PlaystationGame>>(
+                    playstationGames));
         }
     }
 }

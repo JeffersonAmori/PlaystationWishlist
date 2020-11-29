@@ -8,6 +8,13 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlaystationWishlist.AutoMapper\PlaystationWishlist.AutoMapper.csproj" />
+    <ProjectReference Include="..\PlaystationWishlist.Core\PlaystationWishlist.Core.csproj" />
+    <ProjectReference Include="..\PlaystationWishlistWebSite.Models\PlaystationWishlistWebSite.Models.csproj" />
   </ItemGroup>
 
 </Project>
