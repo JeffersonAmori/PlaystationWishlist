@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PlaystationWishlistWebSite.Models.GamesViewModel>
+
+<div id="gamesListViewComponent" >
+    <div class="row">
+        <input type="text" id="gameName" class="col-4" />
+        <input type="button" id="btnGameSearch" value="Search" class="col-4" data-request-url="@Url.Action("GamesList", "ViewComponent")"/>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(m => m.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(m => m.FinalPrice)</th>
+            <th scope="col">@Html.DisplayNameFor(m => m.OriginalPrice)</th>
+            <th scope="col">@Html.DisplayNameFor(m => m.Url)</th>
+            <th scope="col">@Html.DisplayNameFor(m => m.DiscountDescriptor)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var game in @Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => game.Name)</td>
+                <td>@Html.DisplayFor(m => game.FinalPrice)</td>
+                <td>@Html.DisplayFor(m => game.OriginalPrice)</td>
+                <td><a class="btn-link" href="@game.Url">Game page</a></td>
+                <td>@Html.DisplayFor(m => game.DiscountDescriptor)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<script defer src="~/js/Components/GamesList.js"></script>

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -67,6 +68,9 @@ namespace PlaystationGamesImporterWebJob
             services.AddTransient(typeof(IPlaystationWishlistDbContext), typeof(PlaystationWishlistContext));
             services.AddTransient(typeof(IKeyVaultService), typeof(KeyVaultService));
             services.AddAutoMapper(typeof(PlaystationGameProfile).Assembly);
+            services.AddDbContext<PlaystationWishlistContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
+            });
 
             return services;
         }

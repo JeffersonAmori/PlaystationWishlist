@@ -36,10 +36,5 @@ namespace PlaystationWishlist.DataAccess.Data
                 ((PlaystationGame)entity.Entity).LastUpdataded = DateTime.UtcNow;
             }
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=tcp:playstationwishlist.database.windows.net,1433;Initial Catalog=PlaystationWishlistDataBase;Persist Security Info=False;User ID=JeffersonAmori;Password=M@sterk3y;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        }
     }
 }

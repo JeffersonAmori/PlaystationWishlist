@@ -1,18 +1,13 @@
+using System;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using PlaystationWishlist.AutoMapper;
 using PlaystationWishlist.DataAccess.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PlaystationWishlistAPI
 {
@@ -29,7 +24,9 @@ namespace PlaystationWishlistAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<PlaystationWishlistContext>();
+            services.AddDbContext<PlaystationWishlistContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
+            });
             services.AddAutoMapper(typeof(PlaystationGameProfile).Assembly);
         }
 

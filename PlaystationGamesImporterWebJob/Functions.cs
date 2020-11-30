@@ -7,6 +7,7 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace PlaystationGamesImporterWebJob
 {
@@ -25,7 +26,7 @@ namespace PlaystationGamesImporterWebJob
         {
             try
             {
-                var dbContext = new PlaystationWishlistContext();
+                var dbContext = (PlaystationWishlistContext)ServiceLocator.Instance.GetService(typeof(PlaystationWishlistContext));
                 var regions = new[] { "en-US", "pt-BR" };
 
                 dbContext.PlaystationGames.RemoveRange(dbContext.PlaystationGames);
