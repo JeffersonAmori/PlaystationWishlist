@@ -22,7 +22,7 @@ namespace PlaystationGamesImporterWebJob
         }
 
         // ReSharper disable once UnusedMember.Global
-        public async Task ProcessTimerAction([TimerTrigger("0 0 * * * *", RunOnStartup = true)] TimerInfo timerInfo, ILogger logger)
+        public async Task ProcessTimerAction([TimerTrigger("0 0 */6 * * *", RunOnStartup = true)] TimerInfo timerInfo, ILogger logger)
         {
             try
             {

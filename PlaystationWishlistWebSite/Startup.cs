@@ -9,8 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using PlaystationWishlist.AutoMapper;
 using PlaystationWishlist.Core.Entities;
+using PlaystationWishlistWebSite.Models;
 
 namespace PlaystationWishlistWebSite
 {
@@ -27,6 +30,42 @@ namespace PlaystationWishlistWebSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddIdentity<Models.AppUser, AppRole>(option =>
+            {
+                option.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<IdentityAppContext>();
+
+            services.AddDbContext<IdentityAppContext>(cfg =>
+            {
+                cfg.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ??
+                                 throw new ArgumentNullException("Connection string not configurated."));
+            });
+            
+            services.AddAuthentication()
+                .AddCookie()
+                .AddFacebook(facebookOptions =>
+                {
+                    facebookOptions.SaveTokens = true;
+                    facebookOptions.ClientId = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_ID");
+                    facebookOptions.ClientSecret = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_ID");
+                    facebookOptions.Events.OnTicketReceived = (context) =>
+                    {
+                        Console.WriteLine(context.HttpContext.User);
+                        return Task.CompletedTask;
+                    };
+                    facebookOptions.Events.OnCreatingTicket = (context) =>
+                    {
+                        Console.WriteLine(context.Identity);
+                        return Task.CompletedTask;
+                    };
+                })
+                .AddGoogle(googleOptions =>
+                {
+                    googleOptions.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+                    googleOptions.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+                    //googleOptions.CallbackPath = "/Account/ExternalLoginCallback"; 
+                });
             services.AddHttpClient();
             services.AddAutoMapper(typeof(PlaystationGameProfile).Assembly);
         }
@@ -49,6 +88,7 @@ namespace PlaystationWishlistWebSite
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

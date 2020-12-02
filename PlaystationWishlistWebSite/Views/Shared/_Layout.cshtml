@@ -28,6 +28,7 @@
                     </ul>
                 </div>
             </div>
+            @await Component.InvokeAsync("LoginLogout")
         </nav>
     </header>
     <div class="container">
@@ -38,11 +39,12 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - PlaystationWishlistWebSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.UtcNow.Year - Playstation Wishlist - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/261c315347.js" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

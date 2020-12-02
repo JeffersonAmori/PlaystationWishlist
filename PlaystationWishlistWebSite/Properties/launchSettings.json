@@ -12,8 +12,12 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "GOOGLE_CLIENT_ID": "1049203261166-0s075vpmpgmmsfdihll626gdc9mcis1g.apps.googleusercontent.com",
+        "GOOGLE_CLIENT_SECRET": "OKZhHTbgpngts6YcKfj3oel7",
+        "FACEBOOK_CLIENT_ID": "185313306577502",
+        "FACEBOOK_CLIENT_SECRET": "d2afa8e9ec41a4a8e893c637f06a16f3",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "PlaystationWishlistAPI": "http://localhost/PlaystationWishlistAPI",
+        "PLAYSTATION_WISHLIST_API": "https://playstationwishlistapi.azurewebsites.net",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       }
     },

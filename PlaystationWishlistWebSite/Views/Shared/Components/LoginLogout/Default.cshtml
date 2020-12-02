@@ -1,0 +1,12 @@
+﻿@model PlaystationWishlistWebSite.Models.LoginLogoutViewModel
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="btn btn-primary float-right" onclick="@("window.location.href='" + @Url.Action("Logout", "Account") + "'");">
+        <i class="fas fa-user">  @Model.LoggedInUserName, logout</i>
+    </div>
+}
+else
+{
+    <div class="btn btn-primary float-right" onclick="@("window.location.href='" + @Url.Action("Login", "Account") + "'");">Login</div>
+}

@@ -24,7 +24,7 @@ namespace PlaystationWishlistWebSite.Components.Games
         {
             var httpClient = _clientFactory.CreateClient();
 
-            var response = await httpClient.GetAsync(Environment.GetEnvironmentVariable("PlaystationWishlistAPI") + "/api/games/" + gameName);
+            var response = await httpClient.GetAsync(Environment.GetEnvironmentVariable("PLAYSTATION_WISHLIST_API") + "/api/games/" + gameName);
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PlaystationWishlist.Core.Entities.PlaystationGame>>(
                 await response.Content.ReadAsStringAsync());
 
