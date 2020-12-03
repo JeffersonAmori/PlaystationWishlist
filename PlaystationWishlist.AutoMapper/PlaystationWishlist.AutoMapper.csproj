@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PlaystationWishlist.Core\PlaystationWishlist.Core.csproj" />
     <ProjectReference Include="..\PlaystationWishlist.Infrastructure\PlaystationWishlist.DataAccess.csproj" />
+    <ProjectReference Include="..\PlaystationWishlistAPI.Models\PlaystationWishlistAPI.Models.csproj" />
     <ProjectReference Include="..\PlaystationWishlistWebSite.Models\PlaystationWishlistWebSite.Models.csproj" />
   </ItemGroup>
 

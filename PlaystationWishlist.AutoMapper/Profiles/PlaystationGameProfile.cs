@@ -45,6 +45,10 @@ namespace PlaystationWishlist.AutoMapper
 
             CreateMap<PlaystationWishlistWebSite.Models.GamesViewModel, Core.Entities.PlaystationGame>()
                 .ReverseMap();
+
+            CreateMap<PlaystationWishlistAPI.Models.InNewWishlistItem, DataAccess.Models.WishlistItem>();
+
+            CreateMap<DataAccess.Models.WishlistItem, Core.Entities.WishlistItem>();
         }
     }
 }

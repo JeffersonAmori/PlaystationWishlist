@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlaystationWishlist.DataAccess.Data;
 
 namespace PlaystationWishlist.DataAccess.Migrations
 {
     [DbContext(typeof(PlaystationWishlistContext))]
-    partial class PlaystationWishlistContextModelSnapshot : ModelSnapshot
+    [Migration("20201202101552_FixedTypoInLastUpdatedProperty")]
+    partial class FixedTypoInLastUpdatedProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,23 +61,25 @@ namespace PlaystationWishlist.DataAccess.Migrations
                     b.ToTable("PlaystationGames");
                 });
 
-            modelBuilder.Entity("PlaystationWishlist.DataAccess.Models.WishlistItem", b =>
+            modelBuilder.Entity("PlaystationWishlist.DataAccess.Models.UserProfile", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("GameUrl")
-                        .IsRequired()
+                    b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("OId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OIdProvider")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("WishlistItems");
+                    b.ToTable("UserProfiles");
                 });
 #pragma warning restore 612, 618
         }

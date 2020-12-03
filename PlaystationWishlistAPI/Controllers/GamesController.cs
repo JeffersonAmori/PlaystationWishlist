@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PlaystationWishlist.Core.Interfaces;
+using PlaystationWishlist.Core.Entities;
 using PlaystationWishlist.DataAccess.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Design;
-using PlaystationWishlist.Core.Entities;
 
 namespace PlaystationWishlistAPI.Controllers
 {
@@ -27,15 +22,27 @@ namespace PlaystationWishlistAPI.Controllers
 
         [HttpGet]
         [Route("{gameName?}")]
-        public IActionResult Get(string gameName = "")
+        public IActionResult Get(string gameName = "", int? userId = null)
         {
             var playstationGames = string.IsNullOrEmpty(gameName)
-                ? _playstationWishlistDbContext.PlaystationGames.Where(g => g.OriginalPrice != null && g.Region == "en-US").OrderBy(g => g.Name)
-                : _playstationWishlistDbContext.PlaystationGames.Where(g => g.Name.Contains(gameName));
+                ? _playstationWishlistDbContext.PlaystationGames.Where(g => g.OriginalPrice != null && g.Region == "en-US").Take(50).OrderBy(g => g.Name)
+                : _playstationWishlistDbContext.PlaystationGames.Where(g => g.Name.Contains(gameName) && g.Region == "en-US").Take(50).OrderBy(g => g.Name);
 
-            return Ok(
-                _mapper.Map<List<PlaystationGame>>(
-                    playstationGames));
+            var mappedPlaystationGames = _mapper.Map<List<PlaystationGame>>(playstationGames);
+            if (userId != null)
+            {
+                var gamesOnUserWishlist =
+                    _playstationWishlistDbContext.WishlistItems.Where(w => w.UserId == userId.Value);
+
+                mappedPlaystationGames = mappedPlaystationGames.Select(psnGame =>
+                {
+                    psnGame.IsOnUserWishlist =
+                        gamesOnUserWishlist.Any(wishlistItem => wishlistItem.GameUrl == psnGame.Url);
+                    return psnGame;
+                }).ToList();
+            }
+
+            return Ok(mappedPlaystationGames);
         }
     }
 }

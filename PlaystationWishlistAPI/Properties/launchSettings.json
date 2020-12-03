@@ -20,10 +20,11 @@
     "PlaystationWishlistAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "/api/games",
+      "launchUrl": "api/games",
       "environmentVariables": {
         "ConnectionString": "Server=tcp:playstationwishlist.database.windows.net,1433;Initial Catalog=PlaystationWishlistDataBase;Persist Security Info=False;User ID=JeffersonAmori;Password=M@sterk3y;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PLAYSTATION_WISHLIST_API": "https://localhost:5001"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }

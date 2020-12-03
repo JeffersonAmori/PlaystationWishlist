@@ -1,33 +1,41 @@
-﻿@model IEnumerable<PlaystationWishlistWebSite.Models.GamesViewModel>
+﻿@using PlaystationWishlistWebSite.HtmlExtensions
+@model IEnumerable<PlaystationWishlistWebSite.Models.GamesViewModel>
 
-<div id="gamesListViewComponent" >
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, PlaystationWishlistWebSite.TagHelpers
+
+<div id="gamesListViewComponent">
     <div class="row">
         <input type="text" id="gameName" class="col-4" />
-        <input type="button" id="btnGameSearch" value="Search" class="col-2" data-request-url="@Url.Action("GamesList", "ViewComponent")"/>
+        <input type="button" id="btnGameSearch" value="Search" class="col-2" data-request-url="@Url.Action("GamesList", "ViewComponent")" />
     </div>
     <table class="table table-bordered table-striped">
         <thead class="thead-light">
-        <tr>
-            <th scope="col">@Html.DisplayNameFor(m => m.Name)</th>
-            <th scope="col">@Html.DisplayNameFor(m => m.FinalPrice)</th>
-            <th scope="col">@Html.DisplayNameFor(m => m.OriginalPrice)</th>
-            <th scope="col">@Html.DisplayNameFor(m => m.Url)</th>
-            <th scope="col">@Html.DisplayNameFor(m => m.DiscountDescriptor)</th>
-        </tr>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(m => m.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.FinalPrice)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.OriginalPrice)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.Url)</th>
+                <th scope="col">@Html.DisplayNameFor(m => m.DiscountDescriptor)</th>
+                <th scope="col"></th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var game in @Model)
-        {
+            @foreach (var game in @Model)
+            {
             <tr>
                 <td>@Html.DisplayFor(m => game.Name)</td>
                 <td>@Html.DisplayFor(m => game.FinalPrice)</td>
                 <td>@Html.DisplayFor(m => game.OriginalPrice)</td>
                 <td><a class="btn-link" href="@game.Url">Game page</a></td>
                 <td>@Html.DisplayFor(m => game.DiscountDescriptor)</td>
+                <td><button class="btn btn-primary btn-wishlist @(@game.IsOnUserWishlist ? "remove-from-wishlist" : "add-to-wishlist")" data-game-url="@game.Url">Add to wishlist</button></td>
             </tr>
-        }
+            }
         </tbody>
     </table>
 </div>
+
+
 
 <script defer src="~/js/Components/GamesList.js"></script>

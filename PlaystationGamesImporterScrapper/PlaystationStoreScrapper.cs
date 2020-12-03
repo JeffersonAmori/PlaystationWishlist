@@ -69,7 +69,6 @@ namespace PlaystationGamesLoadScrapper
                                 gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDiscountDescriptor, gameUrl, region, gameCurrency));
 
                                 Console.WriteLine($"{count++} - {gameName} - {gameFinalPrice} - {gameOriginalPrice} - {gameDiscountDescriptor}");
-
                             });
                         listOfTasks.Add(_);
                     }

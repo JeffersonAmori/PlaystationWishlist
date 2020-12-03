@@ -13,6 +13,7 @@ namespace PlaystationWishlistWebSite.Models
         public string DiscountDescriptor { get; set; }
         public string Url { get; set; }
         public string Region { get; set; }
-        public string Currency{ get; set; }
+        public string Currency { get; set; }
+        public bool IsOnUserWishlist { get; set; }
     }
 }

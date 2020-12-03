@@ -20,7 +20,7 @@ namespace PlaystationWishlist.DataAccess.Models
         public string? DiscountDescriptor { get; set; }
         [Required]
         public string Url { get; set; }
-        public DateTime LastUpdataded { get; set; }
+        public DateTime LastUpdated { get; set; }
         [Required]
         [StringLength(5)]
         public string Region { get; set; }

@@ -68,7 +68,7 @@ namespace PlaystationWishlistWebSite.Controllers
             }
 
             var signinResult = await _signInManager.ExternalLoginSignInAsync(externalInfo.LoginProvider,
-                externalInfo.ProviderKey, isPersistent: false);
+                externalInfo.ProviderKey, isPersistent: true);
 
             if (signinResult.Succeeded)
             {
@@ -94,7 +94,7 @@ namespace PlaystationWishlistWebSite.Controllers
                     }
 
                     await _userManager.AddLoginAsync(user, externalInfo);
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: true);
 
                     return LocalRedirect(redirectUrl);
                 }

@@ -3,6 +3,7 @@
     "PlaystationGamesImporterWebJob": {
       "commandName": "Project",
       "environmentVariables": {
+        "SENDGRID_API_KEY": "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",
         "ConnectionString": "Server=tcp:playstationwishlist.database.windows.net,1433;Initial Catalog=PlaystationWishlistDataBase;Persist Security Info=False;User ID=JeffersonAmori;Password=M@sterk3y;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "AzureWebJobsStorage": "UseDevelopmentStorage=true"

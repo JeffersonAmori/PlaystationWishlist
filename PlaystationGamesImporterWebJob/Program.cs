@@ -18,6 +18,8 @@ namespace PlaystationGamesImporterWebJob
     {
         static async Task Main()
         {
+            PlaystationWishlist.EmailSender.Sender.Send();
+
             var builder = new HostBuilder();
             // Configure DI
             ServiceLocator.Instance = ConfigureServices().BuildServiceProvider();

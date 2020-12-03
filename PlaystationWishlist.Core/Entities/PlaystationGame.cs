@@ -7,8 +7,9 @@ namespace PlaystationWishlist.Core.Entities
         private readonly string _finalPrice;
         private readonly string _originalPrice;
         private readonly string _currency;
+        private bool _isOnUserWishlist;
 
-        public PlaystationGame(string name, string finalPrice, string originalPrice, string discountDescriptor, string url, string region, string currency)
+        public PlaystationGame(string name, string finalPrice, string originalPrice, string discountDescriptor, string url, string region, string currency, bool isOnUserWishlist = false)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -37,6 +38,7 @@ namespace PlaystationWishlist.Core.Entities
             Url = url;
             Region = region;
             this._currency = currency;
+            _isOnUserWishlist = isOnUserWishlist;
         }
 
         public string Name { get; }
@@ -46,5 +48,12 @@ namespace PlaystationWishlist.Core.Entities
         public string Url { get; }
         public string Region { get; }
         public string Currency => _currency;
+
+        public bool IsOnUserWishlist
+        {
+            get => _isOnUserWishlist;
+            set => _isOnUserWishlist = value;
+        }
+
     }
 }

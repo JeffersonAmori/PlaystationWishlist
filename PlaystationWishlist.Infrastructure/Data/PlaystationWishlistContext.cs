@@ -14,7 +14,7 @@ namespace PlaystationWishlist.DataAccess.Data
         public PlaystationWishlistContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
 
         public DbSet<PlaystationGame> PlaystationGames { get; set; }
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<WishlistItem> WishlistItems { get; set; }
 
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -31,10 +31,10 @@ namespace PlaystationWishlist.DataAccess.Data
             {
                 if (entity.State == EntityState.Added)
                 {
-                    ((PlaystationGame)entity.Entity).LastUpdataded = DateTime.UtcNow;
+                    ((PlaystationGame)entity.Entity).LastUpdated = DateTime.UtcNow;
                 }
 
-                ((PlaystationGame)entity.Entity).LastUpdataded = DateTime.UtcNow;
+                ((PlaystationGame)entity.Entity).LastUpdated = DateTime.UtcNow;
             }
         }
     }
