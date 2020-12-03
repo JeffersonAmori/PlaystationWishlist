@@ -12,6 +12,8 @@
         $(this).removeClass("btn-primary");
         $(this).removeClass("add-to-wishlist");
     }
+
+    $(this).prop("disabled", false);
 };
 
 function switchButton(button) {
@@ -48,6 +50,7 @@ $(document).ready(function () {
 
     $(".btn-wishlist").click(function () {
         var originOfEvent = $(this);
+        originOfEvent.prop("disabled", true);
         $.ajax({
             type: "POST",
             url: "Games/AddOrRemoveGameToWishList",
@@ -74,6 +77,9 @@ $(document).ready(function () {
 
                     switchButton(originOfEvent);
                 }
+            },
+            complete: function () {
+                originOfEvent.prop("disabled", false);
             }
         });
     });
