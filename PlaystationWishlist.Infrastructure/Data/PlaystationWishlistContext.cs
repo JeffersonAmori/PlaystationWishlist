@@ -11,7 +11,7 @@ namespace PlaystationWishlist.DataAccess.Data
     public sealed class PlaystationWishlistContext : DbContext, IPlaystationWishlistDbContext
     {
         public PlaystationWishlistContext() { }
-        public PlaystationWishlistContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
+        public PlaystationWishlistContext(DbContextOptions<PlaystationWishlistContext> dbContextOptions) : base(dbContextOptions) { }
 
         public DbSet<PlaystationGame> PlaystationGames { get; set; }
         public DbSet<WishlistItem> WishlistItems { get; set; }

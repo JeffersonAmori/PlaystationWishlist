@@ -8,6 +8,7 @@ using System.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using PlaystationWishlist.DataAccess.Models.Identity;
 using PlaystationWishlistAPI.Models;
 using PlaystationWishlistWebSite.Models;
 

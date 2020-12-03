@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PlaystationWishlistWebSite.Models;
 using System.Threading.Tasks;
+using PlaystationWishlist.DataAccess.Models.Identity;
 
 namespace PlaystationWishlistWebSite.Components.Account
 {

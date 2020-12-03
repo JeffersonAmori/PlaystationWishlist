@@ -5,9 +5,11 @@ using PlaystationGamesLoadScrapper;
 using PlaystationWishlist.DataAccess.Data;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PlaystationWishlist.EmailSender;
 
 namespace PlaystationGamesImporterWebJob
 {
@@ -26,20 +28,41 @@ namespace PlaystationGamesImporterWebJob
         {
             try
             {
-                var dbContext = (PlaystationWishlistContext)ServiceLocator.Instance.GetService(typeof(PlaystationWishlistContext));
-                var regions = new[] { "en-US", "pt-BR" };
+                var playstationWishlistContext = (PlaystationWishlistContext)ServiceLocator.Instance.GetService(typeof(PlaystationWishlistContext));
+                var identityContext = (IdentityAppContext)ServiceLocator.Instance.GetService(typeof(IdentityAppContext));
 
-                dbContext.PlaystationGames.RemoveRange(dbContext.PlaystationGames);
+                var regions = new[] { "en-US"/*, "pt-BR"*/ };
+
+                playstationWishlistContext.PlaystationGames.RemoveRange(playstationWishlistContext.PlaystationGames);
 
                 foreach (var region in regions)
                 {
                     foreach (var game in await PlaystationStoreScrapper.GetAllGames(region))
                     {
-                        await dbContext.PlaystationGames.AddAsync(_mapper.Map<PlaystationWishlist.DataAccess.Models.PlaystationGame>(game));
+                        await playstationWishlistContext.PlaystationGames.AddAsync(_mapper.Map<PlaystationWishlist.DataAccess.Models.PlaystationGame>(game));
                     }
                 }
 
-                await dbContext.SaveChangesAsync();
+                var discountedGames = playstationWishlistContext.PlaystationGames.Where(g => g.OriginalPrice != null);
+
+                foreach (var discountedGame in discountedGames.ToList())
+                {
+                    var wishlistItemsForGame =
+                        playstationWishlistContext.WishlistItems.Where(item => item.GameUrl == discountedGame.Url);
+
+                    foreach (var wishlistItem in wishlistItemsForGame)
+                    {
+                        var user = identityContext.Users.FirstOrDefault(u => u.Id == wishlistItem.UserId);
+                        if (user != null)
+                        {
+                            Console.WriteLine($"Sending e-mail to {user.Email} about {discountedGame.Name}");
+                            Sender.Send(discountedGame, user);
+                        }
+                    }
+                }
+
+                Console.WriteLine("Saving changes to database.");
+                await playstationWishlistContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {

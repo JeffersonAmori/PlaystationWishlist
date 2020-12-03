@@ -8,4 +8,8 @@
     <PackageReference Include="SendGrid" Version="9.21.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PlaystationWishlist.Infrastructure\PlaystationWishlist.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

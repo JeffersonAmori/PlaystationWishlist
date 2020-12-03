@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PlaystationWishlist.AutoMapper;
 using PlaystationWishlist.Core.Entities;
+using PlaystationWishlist.DataAccess.Data;
+using PlaystationWishlist.DataAccess.Models.Identity;
 using PlaystationWishlistWebSite.Models;
 
 namespace PlaystationWishlistWebSite
@@ -31,7 +33,7 @@ namespace PlaystationWishlistWebSite
         {
             services.AddControllersWithViews();
 
-            services.AddIdentity<Models.AppUser, AppRole>(option =>
+            services.AddIdentity<AppUser, AppRole>(option =>
             {
                 option.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<IdentityAppContext>();

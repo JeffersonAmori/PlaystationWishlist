@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using PlaystationWishlist.DataAccess.Models.Identity;
 using PlaystationWishlistWebSite.Models;
 
 namespace PlaystationWishlistWebSite.Components.Games

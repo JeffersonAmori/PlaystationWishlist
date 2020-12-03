@@ -18,7 +18,7 @@ namespace PlaystationGamesImporterWebJob
     {
         static async Task Main()
         {
-            PlaystationWishlist.EmailSender.Sender.Send();
+            //PlaystationWishlist.EmailSender.Sender.Send();
 
             var builder = new HostBuilder();
             // Configure DI
@@ -71,6 +71,9 @@ namespace PlaystationGamesImporterWebJob
             services.AddTransient(typeof(IKeyVaultService), typeof(KeyVaultService));
             services.AddAutoMapper(typeof(PlaystationGameProfile).Assembly);
             services.AddDbContext<PlaystationWishlistContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
+            });
+            services.AddDbContext<IdentityAppContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
             });
 
