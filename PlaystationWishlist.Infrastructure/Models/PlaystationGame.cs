@@ -24,6 +24,8 @@ namespace PlaystationWishlist.DataAccess.Models
         public string Region { get; set; }
         public string GameImageUrl { get; set; }
         public double? DiscountPercentage { get; set; }
+        [StringLength(3)]
+        public string GamePlatform { get; set; }
 #nullable disable
     }
 }

@@ -58,11 +58,12 @@ $(document).ready(function () {
 
     $(".btn-wishlist").click(function () {
         var originOfEvent = $(this);
+        var remove = originOfEvent.hasClass("remove-from-wishlist");
         originOfEvent.prop("disabled", true);
         $.ajax({
             type: "POST",
             url: "Games/AddOrRemoveGameToWishList",
-            data: { gameUrl: $(this).data("game-url"), remove: originOfEvent.hasClass("remove-from-wishlist") },
+            data: { gameUrl: $(this).data("game-url"), remove: remove },
             success: function (result) {
                 if (result.status === "NOK") {
                     $.toast({
@@ -74,10 +75,11 @@ $(document).ready(function () {
                         pause_on_hover: true
                     });
                 } else {
+                    var text = remove ? "Removed from wishlist" : "Added to wishlist";
                     $.toast({
                         title: "Wishlist",
                         subtitle: "Just now",
-                        content: "Done!",
+                        content: text,
                         type: "success",
                         delay: 3000,
                         pause_on_hover: true

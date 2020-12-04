@@ -6,35 +6,44 @@
 
 <div id="gamesListViewComponent">
     <div class="align-content-center mx-auto mb-3">
-        <input type="text" id="gameName" class="col-9" />
-        <button type="button" id="btnGameSearch" class="btn btn-primary col-2" data-request-url="@Url.Action("GamesList", "ViewComponent")">
-            <span class="fa fa-search"></span>
-        </button>
+        <div class="text-center">
+            <div class="input-group col-12">
+                <div>
+                    <span class="fab fa-playstation input-group-prepend input-group-text" style="font-size: x-large"></span>
+                </div>
+                <input type="search" id="gameName" class="col-9" placeholder="Search for a game" />
+                <div class="input-group-append">
+                    <button type="button" id="btnGameSearch" class="btn btn-primary" data-request-url="@Url.Action("GamesList", "ViewComponent")">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
     <table class="table table-bordered col-12" style="padding: 10px">
         <tbody style="width: 100%">
             @foreach (var game in @Model)
-        {
-            <tr style="width: 100%; padding-bottom: 20px">
-                <td rowspan="3" background="@(@game.GameImageUrl + "?w=150")" style="width: 150px;" class="col-4">
-                </td>
-            </tr>
-            <tr class="bg-dark" style="width: 100%">
-                <td colspan="4">
-                    <a class="btn-link text-light font-weight-bold" target="_blank" style="width: 100%" href="@game.Url">@Html.DisplayFor(m => game.Name)  <span class="fa fa-external-link-alt"></span></a>
-                </td>
-            </tr>
-            <tr style="width: 100%">
-                <td>@(@game.Currency + @game.FinalPrice)</td>
-                <td style="text-decoration: line-through">@(@game.Currency + @game.OriginalPrice)</td>
-                <td>@Html.DisplayFor(m => game.DiscountDescriptor)</td>
-                <td>
-                    <button class="btn btn-primary btn-wishlist fa @(@game.IsOnUserWishlist ? "remove-from-wishlist" : "add-to-wishlist")" data-game-url="@game.Url">
-                        <span class="fa  @(@game.IsOnUserWishlist ? "fa-minus" : "fa-plus")"></span>
-                    </button>
-                </td>
-            </tr>
-        }
+            {
+                <tr style="width: 100%; padding-bottom: 20px">
+                    <td rowspan="3" background="@(@game.GameImageUrl + "?w=150")" style="width: 150px;" class="col-4">
+                    </td>
+                </tr>
+                <tr class="bg-dark" style="width: 100%">
+                    <td colspan="4">
+                        <a class="btn-link text-light font-weight-bold" target="_blank" style="width: 100%" href="@game.Url">@Html.DisplayFor(m => game.Name)  <span class="fa fa-external-link-alt"></span></a>
+                    </td>
+                </tr>
+                <tr style="width: 100%">
+                    <td>@(@game.Currency + @game.FinalPrice)</td>
+                    <td style="text-decoration: line-through">@(@game.Currency + @game.OriginalPrice)</td>
+                    <td>@Html.DisplayFor(m => game.DiscountDescriptor)</td>
+                    <td>
+                        <button class="btn btn-primary btn-wishlist fa @(@game.IsOnUserWishlist ? "remove-from-wishlist" : "add-to-wishlist")" data-game-url="@game.Url">
+                            <span class="fa  @(@game.IsOnUserWishlist ? "fa-minus" : "fa-plus")"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

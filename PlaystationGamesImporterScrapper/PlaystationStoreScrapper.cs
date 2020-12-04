@@ -14,6 +14,13 @@ namespace PlaystationGamesLoadScrapper
     {
         private static readonly string basePsnAddress = "https://store.playstation.com";
 
+        private static readonly Dictionary<string, string> platforms = new Dictionary<string, string>()
+            {
+                {"PS5", "d71e8e6d-0940-4e03-bd02-404fc7d31a31"},
+                {"PS4", "85448d87-aa7b-4318-9997-7d25f4d275a4"}
+            };
+
+
         public static async Task<IEnumerable<PlaystationGame>> GetAllGamesByRegion(params string[] regions)
         {
             var count = 1;
@@ -26,57 +33,63 @@ namespace PlaystationGamesLoadScrapper
 
             foreach (var region in regions)
             {
-                do
+                foreach (var platform in platforms)
                 {
-                    var doc = htmlWeb.Load($"{basePsnAddress}/{region}/category/85448d87-aa7b-4318-9997-7d25f4d275a4/{pageNumber++}");
-                    if (doc.DocumentNode.Descendants().Any(d => d.Attributes["data-qa"]?.Value == "ems-sdk-grid-paginator-next-page-btn" && (bool)d.Attributes["class"]?.Value.Contains("psw-is-disabled")))
+                    pageNumber = 1;
+                    isLastPage = false;
+                    do
                     {
-                        isLastPage = true;
-                    }
-                    var gameLinks = doc.DocumentNode.Descendants().Where(d => d.Attributes["class"]?.Value == "ems-sdk-product-tile-link");
-                    foreach (var link in gameLinks)
-                    {
-                        PlaystationGame playstationGame = null;
-
-                        var gameUrl = basePsnAddress + link.Attributes["href"].Value;
-                        var _ = Task.Run(() =>
+                        var doc = htmlWeb.Load($"{basePsnAddress}/{region}/category/{platform.Value}/{pageNumber++}");
+                        if (doc.DocumentNode.Descendants().Any(d => d.Attributes["data-qa"]?.Value == "ems-sdk-grid-paginator-next-page-btn" && (bool)d.Attributes["class"]?.Value.Contains("psw-is-disabled")))
                         {
-                            int retryCount = 0;
-                            PROCESS_GAME:
-                            try
-                            {
-                                return htmlWeb.Load(gameUrl);
-                            }
-                            catch (System.Net.WebException)
-                            {
-                                if (retryCount > 20)
-                                    throw;
+                            isLastPage = true;
+                        }
+                        var gameLinks = doc.DocumentNode.Descendants().Where(d => d.Attributes["class"]?.Value == "ems-sdk-product-tile-link");
+                        foreach (var link in gameLinks)
+                        {
+                            PlaystationGame playstationGame = null;
 
-                                retryCount++;
-                                Thread.Sleep(TimeSpan.FromSeconds(2));
-                                Console.WriteLine("Retrying for the " + retryCount + " time");
-                                goto PROCESS_GAME;
-                            }
-                        })
-                            .ContinueWith(async gamePageTask =>
+                            var gameUrl = basePsnAddress + link.Attributes["href"].Value;
+                            var _ = Task.Run(() =>
                             {
-                                var gamePage = await gamePageTask;
-                                var gameName = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfe-game-title#name")?.InnerText;
-                                var gameFinalPrice = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#finalPrice")?.InnerText;
-                                var gameOriginalPrice = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#originalPrice")?.InnerText;
-                                var gameDiscountDescriptor = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#discountDescriptor")?.InnerText;
-                                var gameCurrency = currencyRegex.Match(gameFinalPrice ?? string.Empty).Value;
-                                var gameImageUrl = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#heroImage#preview")?.Attributes["src"]?.Value?.Split("?")[0] ??
-                                                   gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#tileImage#preview")?.Attributes["src"]?.Value?.Split("?")[0];
+                                int retryCount = 0;
+                                PROCESS_GAME:
+                                try
+                                {
+                                    return htmlWeb.Load(gameUrl);
+                                }
+                                catch (System.Net.WebException)
+                                {
+                                    if (retryCount > 20)
+                                        throw;
 
-                                gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDiscountDescriptor, gameUrl, region, gameCurrency, gameImageUrl));
+                                    retryCount++;
+                                    Thread.Sleep(TimeSpan.FromSeconds(2));
+                                    Console.WriteLine("Retrying for the " + retryCount + " time");
+                                    goto PROCESS_GAME;
+                                }
+                            })
+                                .ContinueWith(async gamePageTask =>
+                                {
+                                    var gamePage = await gamePageTask;
+                                    var gameName = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfe-game-title#name")?.InnerText;
+                                    var gameFinalPrice = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#finalPrice")?.InnerText;
+                                    var gameOriginalPrice = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#originalPrice")?.InnerText;
+                                    var gameDiscountDescriptor = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#discountDescriptor")?.InnerText;
+                                    var gameCurrency = currencyRegex.Match(gameFinalPrice ?? string.Empty).Value;
+                                    var gameImageUrl = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#heroImage#preview")?.Attributes["src"]?.Value?.Split("?")[0] ??
+                                                       gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#tileImage#preview")?.Attributes["src"]?.Value?.Split("?")[0];
+                                    var gamePlatform = platform.Key;
 
-                                Console.WriteLine($"{count++} - {gameName} - {gameFinalPrice} - {gameOriginalPrice} - {gameDiscountDescriptor}");
-                            });
-                        listOfTasks.Add(_);
+                                    gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDiscountDescriptor, gameUrl, region, gameCurrency, gameImageUrl, gamePlatform));
+
+                                    Console.WriteLine($"{count++} - {gamePlatform} - {gameName} - {gameFinalPrice} - {gameOriginalPrice} - {gameDiscountDescriptor}");
+                                });
+                            listOfTasks.Add(_);
+                        }
                     }
+                    while (!isLastPage);
                 }
-                while (!isLastPage);
             }
 
             await Task.WhenAll(listOfTasks);

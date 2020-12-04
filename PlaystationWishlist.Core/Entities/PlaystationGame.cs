@@ -11,7 +11,7 @@ namespace PlaystationWishlist.Core.Entities
         private double? _discountPercentage;
         private bool _isOnUserWishlist;
 
-        public PlaystationGame(string name, string finalPrice, string originalPrice, string discountDescriptor, string url, string region, string currency, string gameImageUrl, double? discountPercentage = null, bool isOnUserWishlist = false)
+        public PlaystationGame(string name, string finalPrice, string originalPrice, string discountDescriptor, string url, string region, string currency, string gameImageUrl, string gamePlatform, double? discountPercentage = null, bool isOnUserWishlist = false)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -38,6 +38,11 @@ namespace PlaystationWishlist.Core.Entities
                 throw new ArgumentException($"'{nameof(gameImageUrl)}' cannot be null or empty", nameof(gameImageUrl));
             }
 
+            if (string.IsNullOrEmpty(gamePlatform))
+            {
+                throw new ArgumentException($"'{nameof(gamePlatform)}' cannot be null or empty", nameof(gamePlatform));
+            }
+
             Name = name;
             _finalPrice = finalPrice;
             _originalPrice = originalPrice;
@@ -48,6 +53,7 @@ namespace PlaystationWishlist.Core.Entities
             _gameImageUrl = gameImageUrl;
             _discountPercentage = discountPercentage;
             _isOnUserWishlist = isOnUserWishlist;
+            GamePlatform = gamePlatform;
         }
 
         public string Name { get; }
@@ -56,6 +62,7 @@ namespace PlaystationWishlist.Core.Entities
         public string DiscountDescriptor { get; }
         public string Url { get; }
         public string Region { get; }
+        public string GamePlatform { get; }
         public string Currency => _currency;
 
         public bool IsOnUserWishlist
