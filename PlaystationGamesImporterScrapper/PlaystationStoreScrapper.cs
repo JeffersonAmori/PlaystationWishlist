@@ -14,7 +14,7 @@ namespace PlaystationGamesLoadScrapper
     {
         private static readonly string basePsnAddress = "https://store.playstation.com";
 
-        public static async Task<IEnumerable<PlaystationGame>> GetAllGames(params string[] regions)
+        public static async Task<IEnumerable<PlaystationGame>> GetAllGamesByRegion(params string[] regions)
         {
             var count = 1;
             var pageNumber = 1;
@@ -66,7 +66,10 @@ namespace PlaystationGamesLoadScrapper
                                 var gameOriginalPrice = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#originalPrice")?.InnerText;
                                 var gameDiscountDescriptor = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#discountDescriptor")?.InnerText;
                                 var gameCurrency = currencyRegex.Match(gameFinalPrice ?? string.Empty).Value;
-                                gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDiscountDescriptor, gameUrl, region, gameCurrency));
+                                var gameImageUrl = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#heroImage#preview")?.Attributes["src"]?.Value?.Split("?")[0] ??
+                                                   gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#tileImage#preview")?.Attributes["src"]?.Value?.Split("?")[0];
+
+                                gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDiscountDescriptor, gameUrl, region, gameCurrency, gameImageUrl));
 
                                 Console.WriteLine($"{count++} - {gameName} - {gameFinalPrice} - {gameOriginalPrice} - {gameDiscountDescriptor}");
                             });

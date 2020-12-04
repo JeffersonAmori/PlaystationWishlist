@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace PlaystationWishlist.DataAccess.Models
 {
@@ -24,6 +22,8 @@ namespace PlaystationWishlist.DataAccess.Models
         [Required]
         [StringLength(5)]
         public string Region { get; set; }
+        public string GameImageUrl { get; set; }
+        public double? DiscountPercentage { get; set; }
 #nullable disable
     }
 }

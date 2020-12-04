@@ -3,13 +3,10 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using PlaystationGamesLoadScrapper;
 using PlaystationWishlist.DataAccess.Data;
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using PlaystationWishlist.EmailSender;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PlaystationGamesImporterWebJob
 {
@@ -37,7 +34,7 @@ namespace PlaystationGamesImporterWebJob
 
                 foreach (var region in regions)
                 {
-                    foreach (var game in await PlaystationStoreScrapper.GetAllGames(region))
+                    foreach (var game in await PlaystationStoreScrapper.GetAllGamesByRegion(region))
                     {
                         await playstationWishlistContext.PlaystationGames.AddAsync(_mapper.Map<PlaystationWishlist.DataAccess.Models.PlaystationGame>(game));
                     }
@@ -47,8 +44,9 @@ namespace PlaystationGamesImporterWebJob
 
                 foreach (var discountedGame in discountedGames.ToList())
                 {
-                    var wishlistItemsForGame =
-                        playstationWishlistContext.WishlistItems.Where(item => item.GameUrl == discountedGame.Url);
+                    discountedGame.DiscountPercentage = CalculateDiscountPercentage(discountedGame);
+
+                    var wishlistItemsForGame = playstationWishlistContext.WishlistItems.Where(item => item.GameUrl == discountedGame.Url);
 
                     foreach (var wishlistItem in wishlistItemsForGame)
                     {
@@ -70,5 +68,8 @@ namespace PlaystationGamesImporterWebJob
                 throw;
             }
         }
+
+        private double? CalculateDiscountPercentage(PlaystationWishlist.DataAccess.Models.PlaystationGame game) =>
+            Convert.ToDouble(((game.FinalPrice - game.OriginalPrice) - game.OriginalPrice) * 100);
     }
 }

@@ -1,16 +1,16 @@
 ﻿function configureInitialStateOfButtons() {
     if ($(this).hasClass("add-to-wishlist")) {
-        $(this).html("Add to wishlist");
+        $(this).children().addClass("fa-plus");
+        $(this).children().removeClass("fa-minus");
         $(this).addClass("btn-primary");
         $(this).addClass("add-to-wishlist");
         $(this).removeClass("btn-danger");
-        $(this).removeClass("remove-from-wishlist");
     } else {
-        $(this).html("Remove from wishlist");
+        $(this).children().addClass("fa-minus");
+        $(this).children().removeClass("fa-plus");
         $(this).addClass("btn-danger");
         $(this).addClass("remove-from-wishlist");
         $(this).removeClass("btn-primary");
-        $(this).removeClass("add-to-wishlist");
     }
 
     $(this).prop("disabled", false);
@@ -18,21 +18,29 @@
 
 function switchButton(button) {
     if (button.hasClass("remove-from-wishlist")) {
-        button.html("Add to wishlist");
+        button.children().addClass("fa-plus");
+        button.children().removeClass("fa-minus");
         button.addClass("btn-primary");
         button.addClass("add-to-wishlist");
         button.removeClass("btn-danger");
-        button.removeClass("remove-from-wishlist");
     } else {
-        button.html("Remove from wishlist");
+        button.children().addClass("fa-minus");
+        button.children().removeClass("fa-plus");
         button.addClass("btn-danger");
         button.addClass("remove-from-wishlist");
         button.removeClass("btn-primary");
-        button.removeClass("add-to-wishlist");
     }
 };
 
 $(document).ready(function () {
+    var input = document.getElementById("gameName");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("btnGameSearch").click();
+        }
+    });
+
     $("#btnGameSearch").click(function () {
         $("#followersrefresh").empty();
         var url = $(this).data("request-url");

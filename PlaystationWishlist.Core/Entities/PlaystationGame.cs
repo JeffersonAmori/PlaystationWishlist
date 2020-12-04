@@ -7,9 +7,11 @@ namespace PlaystationWishlist.Core.Entities
         private readonly string _finalPrice;
         private readonly string _originalPrice;
         private readonly string _currency;
+        private readonly string _gameImageUrl;
+        private double? _discountPercentage;
         private bool _isOnUserWishlist;
 
-        public PlaystationGame(string name, string finalPrice, string originalPrice, string discountDescriptor, string url, string region, string currency, bool isOnUserWishlist = false)
+        public PlaystationGame(string name, string finalPrice, string originalPrice, string discountDescriptor, string url, string region, string currency, string gameImageUrl, double? discountPercentage = null, bool isOnUserWishlist = false)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -26,18 +28,25 @@ namespace PlaystationWishlist.Core.Entities
                 throw new ArgumentException($"'{nameof(region)}' cannot be null or empty", nameof(region));
             }
 
-            if (string.IsNullOrEmpty(currency))
+            //if (string.IsNullOrEmpty(currency))
+            //{
+            //    throw new ArgumentException($"'{nameof(currency)}' cannot be null or empty", nameof(currency));
+            //}
+
+            if (string.IsNullOrEmpty(gameImageUrl))
             {
-                throw new ArgumentException($"'{nameof(currency)}' cannot be null or empty", nameof(currency));
+                throw new ArgumentException($"'{nameof(gameImageUrl)}' cannot be null or empty", nameof(gameImageUrl));
             }
 
             Name = name;
-            this._finalPrice = finalPrice;
-            this._originalPrice = originalPrice;
+            _finalPrice = finalPrice;
+            _originalPrice = originalPrice;
             DiscountDescriptor = discountDescriptor;
             Url = url;
             Region = region;
-            this._currency = currency;
+            _currency = currency;
+            _gameImageUrl = gameImageUrl;
+            _discountPercentage = discountPercentage;
             _isOnUserWishlist = isOnUserWishlist;
         }
 
@@ -54,6 +63,15 @@ namespace PlaystationWishlist.Core.Entities
             get => _isOnUserWishlist;
             set => _isOnUserWishlist = value;
         }
+        public string GameImageUrl => _gameImageUrl;
 
+        public string FinalPriceWithCurrency => _currency + _finalPrice;
+        public string OriginalPriceWithCurrency => _currency + _originalPrice ?? string.Empty;
+
+        public double? DiscountPercentage
+        {
+            get => _discountPercentage;
+            set => _discountPercentage = value;
+        }
     }
 }
