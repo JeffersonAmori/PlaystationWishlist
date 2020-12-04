@@ -42,7 +42,9 @@ $(document).ready(function () {
     });
 
     $("#btnGameSearch").click(function () {
-        $("#followersrefresh").empty();
+        $("#loader-wrapper").show();
+        //$("#gamesListViewComponentTable").replaceWith($("#loader-wrapper"));
+
         var url = $(this).data("request-url");
         $.ajax({
             type: "GET",
@@ -50,6 +52,7 @@ $(document).ready(function () {
             data: { gameName: document.getElementById("gameName").value },
             success: function (result) {
                 $("#gamesListViewComponent").html(result);
+                $("#loader-wrapper").hide();
             }
         });
     });

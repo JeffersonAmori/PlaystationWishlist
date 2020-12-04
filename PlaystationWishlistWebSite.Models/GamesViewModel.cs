@@ -16,5 +16,6 @@ namespace PlaystationWishlistWebSite.Models
         public string Currency { get; set; }
         public bool IsOnUserWishlist { get; set; }
         public string GameImageUrl { get; set; }
+        public string GamePlatform { get; set; }
     }
 }

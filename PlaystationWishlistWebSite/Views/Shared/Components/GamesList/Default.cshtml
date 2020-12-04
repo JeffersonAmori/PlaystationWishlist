@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered col-12" style="padding: 10px">
+    <table id="gamesListViewComponentTable" class="table table-bordered col-12" style="padding: 10px">
         <tbody style="width: 100%">
             @foreach (var game in @Model)
             {
@@ -30,7 +30,7 @@
                 </tr>
                 <tr class="bg-dark" style="width: 100%">
                     <td colspan="4">
-                        <a class="btn-link text-light font-weight-bold" target="_blank" style="width: 100%" href="@game.Url">@Html.DisplayFor(m => game.Name)  <span class="fa fa-external-link-alt"></span></a>
+                        <a class="btn-link text-light font-weight-bold" target="_blank" style="width: 100%" href="@game.Url">@("[" + game.GamePlatform + "] " + game.Name)  <span class="fa fa-external-link-alt"></span></a>
                     </td>
                 </tr>
                 <tr style="width: 100%">

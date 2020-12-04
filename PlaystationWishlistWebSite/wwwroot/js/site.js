@@ -35,3 +35,5 @@ function signOut() {
         console.log('User signed out.');
     });
 }
+
+$("#loader-wrapper").hide();

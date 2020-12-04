@@ -27,4 +27,8 @@
     <ProjectReference Include="..\PlaystationWishlistWebSite.Models\PlaystationWishlistWebSite.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\Views\" />
+  </ItemGroup>
+
 </Project>
