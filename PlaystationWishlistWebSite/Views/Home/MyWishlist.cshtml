@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "My Wishlist";
+    Layout = "_Layout";
+}
+
+<h2>My Wishlist</h2>
+
+@await Component.InvokeAsync("GamesList", new { showOnlyGamesOnWishlist = true})

@@ -5,6 +5,12 @@ using System.Threading.Tasks;
 
 namespace PlaystationWishlistWebSite.Models
 {
+    public class GamesListViewModel
+    {
+        public  IEnumerable<GamesViewModel> GamesViewModels;
+        public bool ShowSearchBar;
+    }
+
     public class GamesViewModel
     {
         public string Name { get; set; }
@@ -17,5 +23,6 @@ namespace PlaystationWishlistWebSite.Models
         public bool IsOnUserWishlist { get; set; }
         public string GameImageUrl { get; set; }
         public string GamePlatform { get; set; }
+        
     }
 }

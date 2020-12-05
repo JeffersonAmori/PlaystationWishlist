@@ -25,23 +25,30 @@ namespace PlaystationWishlistWebSite.Components.Games
             _userManager = userManager;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(string gameName)
+        public async Task<IViewComponentResult> InvokeAsync(string gameName, bool showOnlyGamesOnWishlist = false)
         {
             var httpClient = _clientFactory.CreateClient();
-            int? userId;
 
-            var gamesSeachUrl = Environment.GetEnvironmentVariable("PLAYSTATION_WISHLIST_API").TrimEnd('/') + "/api/games/" + gameName;
+            var gamesSearchUrl = Environment.GetEnvironmentVariable("PLAYSTATION_WISHLIST_API").TrimEnd('/') + "/api/games?gameName=" + gameName;
+
             if (User.Identity.IsAuthenticated)
             {
-                userId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
-                gamesSeachUrl += $"?userId={userId}";
+                int? userId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
+                gamesSearchUrl += $"&userId={userId}";
+
+                if(showOnlyGamesOnWishlist)
+                    gamesSearchUrl += $"&onlyGamesOnWishlist={showOnlyGamesOnWishlist}";
             }
 
-            var response = await httpClient.GetAsync(gamesSeachUrl);
+            var response = await httpClient.GetAsync(gamesSearchUrl);
             var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PlaystationWishlist.Core.Entities.PlaystationGame>>(
                 await response.Content.ReadAsStringAsync());
 
-            var model = _mapper.Map<List<GamesViewModel>>(result);
+            var model = new GamesListViewModel
+            {
+                GamesViewModels = _mapper.Map<List<GamesViewModel>>(result),
+                ShowSearchBar = !showOnlyGamesOnWishlist
+            };
 
             return View(model);
         }

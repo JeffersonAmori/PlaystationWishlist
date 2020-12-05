@@ -1,21 +1,15 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using PlaystationWishlist.AutoMapper;
-using PlaystationWishlist.Core.Entities;
 using PlaystationWishlist.DataAccess.Data;
 using PlaystationWishlist.DataAccess.Models.Identity;
-using PlaystationWishlistWebSite.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace PlaystationWishlistWebSite
 {
@@ -79,6 +73,7 @@ namespace PlaystationWishlistWebSite
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

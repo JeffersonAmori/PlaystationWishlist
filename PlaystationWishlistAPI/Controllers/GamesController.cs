@@ -21,8 +21,7 @@ namespace PlaystationWishlistAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{gameName?}")]
-        public IActionResult Get(string gameName = "", int? userId = null)
+        public IActionResult Get(string gameName = "", int? userId = null, bool onlyGamesOnWishlist = false)
         {
             var playstationGames = string.IsNullOrEmpty(gameName)
                 ? _playstationWishlistDbContext.PlaystationGames.Where(g => g.OriginalPrice != null && g.Region == "en-US").Take(50).OrderBy(g => g.Name)
@@ -41,6 +40,9 @@ namespace PlaystationWishlistAPI.Controllers
                     return psnGame;
                 }).ToList();
             }
+
+            if (onlyGamesOnWishlist)
+                mappedPlaystationGames = mappedPlaystationGames.Where(g => g.IsOnUserWishlist).ToList();
 
             return Ok(mappedPlaystationGames);
         }

@@ -2,9 +2,12 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <div class="btn btn-primary float-right" onclick="@("window.location.href='" + @Url.Action("Logout", "Account") + "'");">
-        <i class="fas fa-user">  @Model.LoggedInUserName, logout</i>
+<div class="float-right font-weight-bold">
+    <i class="fas fa-user"> </i>  @Model.LoggedInUserName
+    <div class="btn btn-outline-primary" onclick="@("window.location.href='" + @Url.Action("Logout", "Account") + "'");">
+        logout
     </div>
+</div>
 }
 else
 {

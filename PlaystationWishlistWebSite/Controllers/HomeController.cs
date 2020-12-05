@@ -16,6 +16,11 @@ namespace PlaystationWishlistWebSite.Controllers
             return View();
         }
 
+        public async Task<IActionResult> MyWishlist()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
