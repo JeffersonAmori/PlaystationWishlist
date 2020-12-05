@@ -1,0 +1,28 @@
+﻿.btn-social-login {
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-google {
+    /*background: #ef4239;*/
+    /*background: #0F9D58;*/
+    background: linear-gradient(to right, #DB4437 25%, #0F9D58 25% 50%, #F4B400 50% 75%, #4285F4 75% 100%);
+}
+
+.btn-facebook {
+    background: #4267B2;
+}
+
+.btn-twitter {
+    background: #1da1f2;
+}
+
+.btn-microsoft {
+    background: #737373;
+}
+
+.btn-reddit {
+    background: linear-gradient(to right, #f10a1a, #ff761c);
+    /*background: #ff4500;*/
+}

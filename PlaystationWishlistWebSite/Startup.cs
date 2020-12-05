@@ -43,14 +43,18 @@ namespace PlaystationWishlistWebSite
                 cfg.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ??
                                  throw new ArgumentNullException("Connection string not configurated."));
             });
-            
+
             services.AddAuthentication()
                 .AddCookie()
+                .AddGoogle(googleOptions =>
+                {
+                    googleOptions.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+                    googleOptions.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+                })
                 .AddFacebook(facebookOptions =>
                 {
-                    facebookOptions.SaveTokens = true;
                     facebookOptions.ClientId = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_ID");
-                    facebookOptions.ClientSecret = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_ID");
+                    facebookOptions.ClientSecret = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_SECRET");
                     facebookOptions.Events.OnTicketReceived = (context) =>
                     {
                         Console.WriteLine(context.HttpContext.User);
@@ -62,12 +66,12 @@ namespace PlaystationWishlistWebSite
                         return Task.CompletedTask;
                     };
                 })
-                .AddGoogle(googleOptions =>
+                .AddMicrosoftAccount(microsoftOption =>
                 {
-                    googleOptions.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-                    googleOptions.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-                    //googleOptions.CallbackPath = "/Account/ExternalLoginCallback"; 
+                    microsoftOption.ClientId = Environment.GetEnvironmentVariable("MICROSOFT_CLIENT_ID");
+                    microsoftOption.ClientSecret = Environment.GetEnvironmentVariable("MICROSOFT_CLIENT_SECRET");
                 });
+
             services.AddHttpClient();
             services.AddAutoMapper(typeof(PlaystationGameProfile).Assembly);
         }

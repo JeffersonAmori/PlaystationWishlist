@@ -1,21 +1,43 @@
-﻿<div class="row my-lg-5 mx-lg-4">
+﻿<link href="~/css/Views/login.css" rel="stylesheet" />
+<div class="row my-lg-5 mx-lg-4">
     <div class="col-lg-12">
         <h5>Sign in using</h5>
     </div>
-    <div class="input-group col-12">
-        <a target="_self" href="@Url.Action("ExternalLogin", "Account", new {provider = "Google"})" class="btn btn-block btn-danger">
+    <div class="col-12">
+        <a target="_self" href="@Url.Action("ExternalLogin", "Account", new {provider = "Google"})" class="btn btn-block btn-social-login btn-google">
             Google
         </a>
     </div>
-
-    <div class="col-lg-12 p-2">
-        
-    </div>
-    @*<div class="col-lg-12 p-2">
+    <div class="col-12">
         <a target="_self"
            href="@Url.Action("ExternalLogin", "Account", new {provider = "Facebook"})"
-           class="btn btn-block btn-primary">
-            <span class="icon-facebook2"></span> Facebook
+           class="btn btn-block btn-social-login btn-facebook">
+            Facebook
         </a>
-    </div>*@
+    </div>
+    <div class="col-12">
+        <a target="_self"
+           href="@Url.Action("ExternalLogin", "Account", new {provider = "Microsoft"})"
+           class="btn btn-block btn-social-login btn-microsoft">
+            Microsoft
+        </a>
+    </div>
+
+    <div class="col-lg-12">
+        <h5>Coming soon</h5>
+    </div>
+    <div class="col-6">
+        <a target="_self"
+           @*href="@Url.Action("ExternalLogin", "Account", new {provider = "Microsoft"})"*@
+           class="btn btn-block btn-social-login btn-twitter">
+            Twitter
+        </a>
+    </div>
+    <div class="col-6">
+        <a target="_self"
+           @*href="@Url.Action("ExternalLogin", "Account", new {provider = "Reddit"})"*@
+           class="btn btn-block btn-social-login btn-reddit">
+            Reddit
+        </a>
+    </div>
 </div>

@@ -9,6 +9,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
@@ -25,10 +26,6 @@
     <ProjectReference Include="..\PlaystationWishlist.AutoMapper\PlaystationWishlist.AutoMapper.csproj" />
     <ProjectReference Include="..\PlaystationWishlist.Core\PlaystationWishlist.Core.csproj" />
     <ProjectReference Include="..\PlaystationWishlistWebSite.Models\PlaystationWishlistWebSite.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\css\Views\" />
   </ItemGroup>
 
 </Project>

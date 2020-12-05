@@ -13,7 +13,9 @@
       "launchBrowser": true,
       "environmentVariables": {
         "GOOGLE_CLIENT_ID": "1049203261166-0s075vpmpgmmsfdihll626gdc9mcis1g.apps.googleusercontent.com",
+        "MICROSOFT_CLIENT_ID": "d31ef3f1-e594-4d18-a058-fb7055e99604",
         "GOOGLE_CLIENT_SECRET": "OKZhHTbgpngts6YcKfj3oel7",
+        "MICROSOFT_CLIENT_SECRET": "Bjmrb7KcLE_.UzQ-4kKuy4Y61UYO5EXJ-4",
         "FACEBOOK_CLIENT_ID": "185313306577502",
         "FACEBOOK_CLIENT_SECRET": "d2afa8e9ec41a4a8e893c637f06a16f3",
         "ASPNETCORE_ENVIRONMENT": "Development",
