@@ -1,14 +1,39 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-@import "Colors.less";
-/*@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");*/ 
-@import url('file:///C:\Users\jeffe\Source\Repos\PlaystationWishlist\PlaystationWishlistWebSite\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css');
+@import "colors.less";
+@import "sizes.less";
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
 }
 
+.nav-tabs .nav-link {
+    border-color: @color-light;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.nav-bottom > li {
+    background-color: @color-light;
+
+    a {
+        color: @color-light;
+        background-color: @color-primary;
+    }
+}
+
+.nav-bottom > li.active {
+    a {
+        color: @color-primary;
+        background-color: @color-light;
+    }
+}
+
+#navButtonShare > a {
+    color: @color-secondary;
+}
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
@@ -45,6 +70,7 @@ a {
     background-color: @color-primary !important;
 }
 
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -74,6 +100,8 @@ button.accept-policy {
     line-height: inherit;
 }
 
+
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -94,6 +122,8 @@ body {
     line-height: 60px; /* Vertically center the text there */
 }
 
+/* Loading element
+-------------------------------------------------- */
 #loader-wrapper {
     position: fixed;
     top: 0;
@@ -105,13 +135,13 @@ body {
     background: #222222;
 }
 
-    #loader-wrapper .loader-section {
-        position: fixed;
-        top: 0;
-        width: 51%;
-        height: 100%;
-        z-index: 1000;
-    }
+#loader-wrapper .loader-section {
+    position: fixed;
+    top: 0;
+    width: 51%;
+    height: 100%;
+    z-index: 1000;
+}
 
 #loader {
     display: block;
@@ -129,33 +159,33 @@ body {
     animation: spin 2s linear infinite;
 }
 
-    #loader:before {
-        content: "";
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        right: 5px;
-        bottom: 5px;
-        border: 3px solid transparent;
-        border-radius: 50%;
-        border-top-color: @color-secondary;
-        -webkit-animation: spin 3s linear infinite;
-        animation: spin 3s linear infinite;
-    }
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top-color: @color-secondary;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
 
-    #loader:after {
-        content: "";
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        right: 15px;
-        bottom: 15px;
-        border: 3px solid transparent;
-        border-radius: 50%;
-        border-top-color: @color-light;
-        -webkit-animation: spin 1.5s linear infinite;
-        animation: spin 1.5s linear infinite;
-    }
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top-color: @color-light;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
 
 @-webkit-keyframes spin {
     0% {

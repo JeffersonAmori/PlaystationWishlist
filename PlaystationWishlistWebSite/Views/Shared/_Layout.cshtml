@@ -7,7 +7,8 @@
     <link rel="icon" href="https://cdn.iconscout.com/icon/free/png-256/playstation-34-569261.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/toast.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.min.css" />
+    <link rel="stylesheet" href="~/css/Views/Shared/site-navbar.min.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -18,7 +19,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        @*TOP NAVBAR*@
+        <nav id="topNavBar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index">Playstation Wishlist</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -29,9 +31,9 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.Identity.IsAuthenticated)
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyWishlist">My Wishlist</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MyWishlist">My Wishlist</a>
+                            </li>
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -41,6 +43,33 @@
                 @await Component.InvokeAsync("LoginLogout")
             </div>
         </nav>
+
+        @*BOTTOM NAVBAR*@
+        <ul id="bottomNavBar" class="nav nav-tabs nav-fill fixed-bottom nav-bottom">
+            <li id="navButtonSearch" class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                    <span class="fa fa-search"></span>
+                </a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li id="navButtonBookmark" class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="MyWishlist">
+                        <span class="fa fa-bookmark"></span>
+                    </a>
+                </li>
+            }
+            <li id="navButtonInfo" class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">
+                    <span class="fa fa-info"></span>
+                </a>
+            </li>
+            <li id="navButtonShare" class="nav-item">
+                <a class="nav-link" >
+                    <span class="fa fa-share"></span>
+                </a>
+            </li>
+        </ul>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

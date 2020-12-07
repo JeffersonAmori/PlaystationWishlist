@@ -3,6 +3,10 @@
     Layout = "_Layout";
 }
 
+<script>
+    $("#navButtonBookmark").addClass("active");
+</script>
+
 <h2>My Wishlist</h2>
 
 @await Component.InvokeAsync("GamesList", new { showOnlyGamesOnWishlist = true})
