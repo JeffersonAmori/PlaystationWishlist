@@ -30,6 +30,7 @@ namespace PlaystationWishlistWebSite.Controllers
         {
             try
             {
+
                 if (!User.Identity.IsAuthenticated)
                 {
                     return new { Status = "NOK", Message = "User must be authenticated." };

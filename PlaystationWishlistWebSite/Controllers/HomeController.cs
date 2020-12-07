@@ -13,16 +13,29 @@ namespace PlaystationWishlistWebSite.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                ViewBag.Layout = "NoLayout";
+            }
             return View();
         }
 
         public async Task<IActionResult> MyWishlist()
         {
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                ViewBag.Layout = "NoLayout";
+            }
+
             return View();
         }
 
         public IActionResult Privacy()
         {
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                ViewBag.Layout = "NoLayout";
+            }
             return View();
         }
 

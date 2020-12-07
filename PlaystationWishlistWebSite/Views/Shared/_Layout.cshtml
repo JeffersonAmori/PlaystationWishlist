@@ -20,14 +20,10 @@
 <body>
     <header>
         @*TOP NAVBAR*@
-        <nav id="topNavBar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index">Playstation Wishlist</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div id="topNavBar" class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -45,34 +41,42 @@
         </nav>
 
         @*BOTTOM NAVBAR*@
-        <ul id="bottomNavBar" class="nav nav-tabs nav-fill fixed-bottom nav-bottom">
-            <li id="navButtonSearch" class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">
-                    <span class="fa fa-search"></span>
-                </a>
-            </li>
+        <ul id="bottomNavBar" class="nav nav-tabs nav-fill fixed-bottom nav-bottom" >
             @if (User.Identity.IsAuthenticated)
             {
-                <li id="navButtonBookmark" class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="MyWishlist">
+                <li id="navButtonBookmark" class="nav-item" data-url="@Url.Action("MyWishlist", "Home")">
+                    <a class="nav-link">
                         <span class="fa fa-bookmark"></span>
                     </a>
                 </li>
             }
-            <li id="navButtonInfo" class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">
+            else
+            {
+                <li id="navButtonLogin" class="nav-item" data-url="@Url.Action("Login", "Account")">
+                    <a class="nav-link">
+                        <span class="fa fa-user-alt"></span>
+                    </a>
+                </li>
+            }
+            <li id="navButtonSearch" class="nav-item" data-url="@Url.Action("Index", "Home")">
+                <a class="nav-link">
+                    <span class="fa fa-search"></span>
+                </a>
+            </li>
+            <li id="navButtonInfo" class="nav-item" data-url="@Url.Action("Privacy", "Home")">
+                <a class="nav-link">
                     <span class="fa fa-info"></span>
                 </a>
             </li>
             <li id="navButtonShare" class="nav-item">
-                <a class="nav-link" >
+                <a id="linkButtonShare" class="nav-link">
                     <span class="fa fa-share"></span>
                 </a>
             </li>
         </ul>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main id="mainContent" role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>

@@ -2,6 +2,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/PlaystationWishlistWebSite",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:53141",
       "sslPort": 44379

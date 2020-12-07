@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\Views\login.css" />
     <_ContentIncludedByDefault Remove="wwwroot\css\Views\Shared\site-navbar.css" />
   </ItemGroup>
 
@@ -40,6 +41,10 @@
     <ProjectReference Include="..\PlaystationWishlist.AutoMapper\PlaystationWishlist.AutoMapper.csproj" />
     <ProjectReference Include="..\PlaystationWishlist.Core\PlaystationWishlist.Core.csproj" />
     <ProjectReference Include="..\PlaystationWishlistWebSite.Models\PlaystationWishlistWebSite.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Filters\" />
   </ItemGroup>
 
 </Project>

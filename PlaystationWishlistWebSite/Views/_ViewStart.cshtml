@@ -1,3 +1,10 @@
 ﻿@{
-    Layout = "_Layout";
+    @if (ViewBag.Layout == null)
+    {
+        Layout = "_Layout";
+    }
+    else
+    {
+        Layout = null;
+    }
 }

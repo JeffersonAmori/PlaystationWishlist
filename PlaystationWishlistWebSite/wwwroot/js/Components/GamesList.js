@@ -83,6 +83,7 @@ $(document).ready(function () {
         var originOfEvent = $(this);
         var remove = originOfEvent.hasClass("btn-remove-from-wishlist");
         originOfEvent.prop("disabled", true);
+        originOfEvent.addClass("disabled");
         $.ajax({
             type: "POST",
             url: window.addOrRemoveGameOnWishlistUrl,
@@ -112,6 +113,7 @@ $(document).ready(function () {
                 }
             },
             complete: function () {
+                originOfEvent.removeClass("disabled");
                 originOfEvent.prop("disabled", false);
             }
         });

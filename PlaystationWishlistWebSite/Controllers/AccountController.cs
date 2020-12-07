@@ -22,6 +22,11 @@ namespace PlaystationWishlistWebSite.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                ViewBag.Layout = "NoLayout";
+            }
+
             if (User.Identity.IsAuthenticated)
             {
                 LocalRedirect(Url.Action("Index", "Home"));

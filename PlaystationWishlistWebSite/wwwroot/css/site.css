@@ -7,7 +7,7 @@ a.navbar-brand {
   word-break: break-all;
 }
 .nav-tabs .nav-link {
-  border-color: #ffffff;
+  border-color: #000000;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -17,10 +17,18 @@ a.navbar-brand {
 .nav-bottom > li a {
   color: #ffffff;
   background-color: #003087;
+  font-size: large;
 }
 .nav-bottom > li.active a {
   color: #003087;
   background-color: #ffffff;
+}
+a:not([href]):not([tabindex]) {
+  color: #ffffff;
+}
+a:not([href]):not([tabindex]):not(.active):hover {
+  color: #f2d23a;
+  border-color: #000000;
 }
 #navButtonShare > a {
   color: #f2d23a;

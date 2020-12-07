@@ -10,7 +10,7 @@ a.navbar-brand {
 }
 
 .nav-tabs .nav-link {
-    border-color: @color-light;
+    border-color: @color-darker;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -21,6 +21,7 @@ a.navbar-brand {
     a {
         color: @color-light;
         background-color: @color-primary;
+        font-size: large;
     }
 }
 
@@ -29,6 +30,14 @@ a.navbar-brand {
         color: @color-primary;
         background-color: @color-light;
     }
+}
+a:not([href]):not([tabindex]) {
+    color: @color-light;
+
+}
+a:not([href]):not([tabindex]):not(.active):hover {
+    color: @color-secondary;
+    border-color: @color-darker;
 }
 
 #navButtonShare > a {

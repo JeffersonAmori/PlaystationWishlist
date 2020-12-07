@@ -10,5 +10,9 @@
   {
     "outputFile": "wwwroot/css/Views/Shared/site-navbar.css",
     "inputFile": "wwwroot/css/Views/Shared/site-navbar.less"
+  },
+  {
+    "outputFile": "wwwroot/css/Views/login.css",
+    "inputFile": "wwwroot/css/Views/login.less"
   }
 ]
