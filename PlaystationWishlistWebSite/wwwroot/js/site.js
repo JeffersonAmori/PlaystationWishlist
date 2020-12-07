@@ -6,8 +6,13 @@ $("#loader-wrapper").show();
 
 $(document).ready(function () {
     configurePageNavbar();
+    
+    $(".nav-bottom > li").click(function () {
+        navigate($(this));
+    });
 
     if (navigator.canShare) {
+        $("#linkButtonShare").off("click");
         $("#linkButtonShare").click(function () {
             if (navigator.share) {
                 navigator.share({
@@ -25,20 +30,14 @@ $(document).ready(function () {
         $("#navButtonShare").hide();
     }
 
-    $(".nav-bottom > li").click(function() {
-        navigate($(this));
-    });
-    //$("#navButtonBookmark").click(function () {
-    //    navigate($(this));
-    //});
-
-    //$("#navButtonSearch").click(function () {
-    //    navigate($(this));
-    //});
-
-    //$("#navButtonInfo").click(function () {
-    //    navigate($(this));
-    //});
+    function navigate(el) {
+        deactivateAllNavBottomButtons();
+        $("#loader-wrapper").show();
+        $("#mainContent").load(el.data("url"),
+            function () {
+                $("#loader-wrapper").hide();
+            });
+    };
 
     function configurePageNavbar() {
         if ($(window).width() <= 576) {
@@ -49,17 +48,6 @@ $(document).ready(function () {
             $("#topNavBar").show();
         }
     }
-
-    function navigate(el) {
-        deactivateAllNavBottomButtons();
-        $("#loader-wrapper").show();
-        $("#mainContent").load(el.data("url"),
-            function () {
-                $("#loader-wrapper").hide();
-            });
-
-    };
-
 
     function deactivateAllNavBottomButtons() {
         $(".nav-bottom > li").removeClass("active");

@@ -1,7 +1,12 @@
 ﻿<link href="~/css/Views/login.css" rel="stylesheet" />
 
 <script>
+    $("#btnLogin").hide();
     $("#navButtonLogin").addClass("active");
+
+    window.onbeforeunload = function(){
+        $("#btnLogin").show();
+    };
 </script>
 
 <div class="row my-lg-5 mx-lg-4">

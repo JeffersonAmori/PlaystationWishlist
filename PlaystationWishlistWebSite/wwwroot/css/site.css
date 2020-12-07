@@ -26,13 +26,13 @@ a.navbar-brand {
 a:not([href]):not([tabindex]) {
   color: #ffffff;
 }
-a:not([href]):not([tabindex]):not(.active):hover {
-  color: #f2d23a;
-  border-color: #000000;
-}
-#navButtonShare > a {
-  color: #f2d23a;
-}
+/*a:not([href]):not([tabindex]):not(.active):hover {
+    color: @color-secondary;
+    border-color: @color-darker;
+}*/
+/*#navButtonShare > a {
+    color: @color-secondary;
+}*/
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
