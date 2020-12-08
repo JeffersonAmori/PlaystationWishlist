@@ -5,6 +5,7 @@ using PlaystationWishlistWebSite.ViewModels;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using PlaystationWishlist.DataAccess.Models.Identity;
+using PlaystationWishlistWebSite.Filters;
 
 namespace PlaystationWishlistWebSite.Controllers
 {

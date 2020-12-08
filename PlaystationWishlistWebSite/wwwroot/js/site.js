@@ -7,7 +7,8 @@ $("#loader-wrapper").show();
 $(document).ready(function () {
     configurePageNavbar();
     
-    $(".nav-bottom > li").click(function () {
+    //$(".nav-bottom > li").click(function () {
+    $("li[data-url]").click(function () {
         navigate($(this));
     });
 
