@@ -23,16 +23,18 @@ namespace PlaystationWishlistAPI.Controllers
         [HttpGet]
         public IActionResult Get(string gameName = "", int? userId = null, bool onlyGamesOnWishlist = false)
         {
-            var playstationGames = string.IsNullOrEmpty(gameName)
-                ? _playstationWishlistDbContext.PlaystationGames.Where(g => g.OriginalPrice != null && g.Region == "en-US").Take(50).OrderBy(g => g.Name)
-                : _playstationWishlistDbContext.PlaystationGames.Where(g => g.Name.Contains(gameName) && g.Region == "en-US").Take(50).OrderBy(g => g.Name);
-
-            var mappedPlaystationGames = _mapper.Map<List<PlaystationGame>>(playstationGames);
-            if (userId != null)
+            IQueryable<PlaystationWishlist.DataAccess.Models.PlaystationGame> playstationGames;
+            List<PlaystationGame> mappedPlaystationGames = new List<PlaystationGame>();
+            if (onlyGamesOnWishlist)
             {
                 var gamesOnUserWishlist =
                     _playstationWishlistDbContext.WishlistItems.Where(w => w.UserId == userId.Value);
 
+
+                playstationGames = _playstationWishlistDbContext.PlaystationGames.Where(psnGame =>
+                        gamesOnUserWishlist.Any(wishlistItem => wishlistItem.GameUrl == psnGame.Url));
+
+                mappedPlaystationGames = _mapper.Map<List<PlaystationGame>>(playstationGames);
                 mappedPlaystationGames = mappedPlaystationGames.Select(psnGame =>
                 {
                     psnGame.IsOnUserWishlist =
@@ -40,11 +42,17 @@ namespace PlaystationWishlistAPI.Controllers
                     return psnGame;
                 }).ToList();
             }
+            else
+            {
+                playstationGames = string.IsNullOrEmpty(gameName)
+                    ? _playstationWishlistDbContext.PlaystationGames.Where(g => g.OriginalPrice != null && g.Region == "en-US").Take(20)
+                    : _playstationWishlistDbContext.PlaystationGames.Where(g => g.Name.Contains(gameName ?? string.Empty) && g.Region == "en-US").Take(20);
 
-            if (onlyGamesOnWishlist)
-                mappedPlaystationGames = mappedPlaystationGames.Where(g => g.IsOnUserWishlist).ToList();
+                mappedPlaystationGames = _mapper.Map<List<PlaystationGame>>(playstationGames);
+            }
 
-            return Ok(mappedPlaystationGames);
+
+            return Ok(mappedPlaystationGames.OrderBy(g => g.Name));
         }
     }
 }
