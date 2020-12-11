@@ -49,16 +49,6 @@ namespace PlaystationWishlistWebSite
                 {
                     facebookOptions.ClientId = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_ID");
                     facebookOptions.ClientSecret = Environment.GetEnvironmentVariable("FACEBOOK_CLIENT_SECRET");
-                    facebookOptions.Events.OnTicketReceived = (context) =>
-                    {
-                        Console.WriteLine(context.HttpContext.User);
-                        return Task.CompletedTask;
-                    };
-                    facebookOptions.Events.OnCreatingTicket = (context) =>
-                    {
-                        Console.WriteLine(context.Identity);
-                        return Task.CompletedTask;
-                    };
                 })
                 .AddMicrosoftAccount(microsoftOption =>
                 {
