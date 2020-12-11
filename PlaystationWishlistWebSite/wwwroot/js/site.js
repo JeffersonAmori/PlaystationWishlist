@@ -51,7 +51,7 @@ $(document).ready(function () {
     }
 
     function deactivateAllNavBottomButtons() {
-        $(".nav-bottom > li").removeClass("active");
+        $(".nav-bottom > li > button").removeClass("active");
     }
 
     window.onresize = function () {

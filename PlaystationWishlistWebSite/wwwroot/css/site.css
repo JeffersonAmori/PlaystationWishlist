@@ -12,14 +12,14 @@ a.navbar-brand {
   border-top-right-radius: 0;
 }
 .nav-bottom > li {
-  background-color: #ffffff;
+  /*background-color: @color-light;*/
 }
-.nav-bottom > li a {
+.nav-bottom > li button {
   color: #ffffff;
   background-color: #003087;
   font-size: large;
 }
-.nav-bottom > li.active a {
+.nav-bottom > li button.active {
   color: #003087;
   background-color: #ffffff;
 }

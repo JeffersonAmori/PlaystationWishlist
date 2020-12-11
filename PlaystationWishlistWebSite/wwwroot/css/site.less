@@ -16,17 +16,17 @@ a.navbar-brand {
 }
 
 .nav-bottom > li {
-    background-color: @color-light;
+    /*background-color: @color-light;*/
 
-    a {
+    button {
         color: @color-light;
         background-color: @color-primary;
         font-size: large;
     }
 }
 
-.nav-bottom > li.active {
-    a {
+.nav-bottom > li {
+    button.active {
         color: @color-primary;
         background-color: @color-light;
     }
@@ -34,7 +34,6 @@ a.navbar-brand {
 
 a:not([href]):not([tabindex]) {
     color: @color-light;
-
 }
 
 /*a:not([href]):not([tabindex]):not(.active):hover {

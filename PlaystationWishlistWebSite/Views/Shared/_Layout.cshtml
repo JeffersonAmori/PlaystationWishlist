@@ -41,37 +41,37 @@
         </nav>
 
         @*BOTTOM NAVBAR*@
-        <ul id="bottomNavBar" class="nav nav-tabs nav-fill fixed-bottom nav-bottom" >
+        <ul id="bottomNavBar" class="nav nav-tabs nav-fill fixed-bottom nav-bottom">
             @if (User.Identity.IsAuthenticated)
             {
-                <li id="navButtonBookmark" class="nav-item" data-url="@Url.Action("MyWishlist", "Home")">
-                    <a class="nav-link">
+                <li class="nav-item" data-url="@Url.Action("MyWishlist", "Home")">
+                    <button id="navButtonBookmark" class="btn btn-primary btn-block rounded-0 shadow-none">
                         <span class="fa fa-bookmark"></span>
-                    </a>
+                    </button>
                 </li>
             }
             else
             {
-                <li id="navButtonLogin" class="nav-item" data-url="@Url.Action("Login", "Account")">
-                    <a class="nav-link">
+                <li class="nav-item" data-url="@Url.Action("Login", "Account")">
+                    <button id="navButtonLogin" class="btn btn-primary btn-block rounded-0 shadow-none">
                         <span class="fa fa-user-alt"></span>
-                    </a>
+                    </button>
                 </li>
             }
-            <li id="navButtonSearch" class="nav-item" data-url="@Url.Action("Index", "Home")">
-                <a class="nav-link">
+            <li class="nav-item" data-url="@Url.Action("Index", "Home")">
+                <button id="navButtonSearch" class="btn btn-primary btn-block rounded-0 shadow-none">
                     <span class="fa fa-search"></span>
-                </a>
+                </button>
             </li>
-            <li id="navButtonInfo" class="nav-item" data-url="@Url.Action("Privacy", "Home")">
-                <a class="nav-link">
+            <li class="nav-item" data-url="@Url.Action("Privacy", "Home")">
+                <button id="navButtonInfo" class="btn btn-primary btn-block rounded-0 shadow-none">
                     <span class="fa fa-info"></span>
-                </a>
+                </button>
             </li>
             <li id="navButtonShare" class="nav-item">
-                <a id="linkButtonShare" class="nav-link">
+                <button class="btn btn-primary btn-block rounded-0 shadow-none">
                     <span class="fa fa-share-alt"></span>
-                </a>
+                </button>
             </li>
         </ul>
     </header>
