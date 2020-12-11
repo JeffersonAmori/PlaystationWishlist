@@ -23,7 +23,7 @@
         "FACEBOOK_CLIENT_ID": "185313306577502",
         "FACEBOOK_CLIENT_SECRET": "d2afa8e9ec41a4a8e893c637f06a16f3",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "PLAYSTATION_WISHLIST_API": "https://localhost:5001/",
+        "PLAYSTATION_WISHLIST_API": "https://playstationwishlistapi-development.azurewebsites.net",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       }
     },
