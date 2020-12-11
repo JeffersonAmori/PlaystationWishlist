@@ -47,6 +47,16 @@ namespace PlaystationWishlistWebSite.Controllers
             return View();
         }
 
+        public IActionResult Terms()
+        {
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                ViewBag.Layout = "NoLayout";
+            }
+
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
