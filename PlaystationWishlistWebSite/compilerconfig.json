@@ -14,5 +14,9 @@
   {
     "outputFile": "wwwroot/css/Views/login.css",
     "inputFile": "wwwroot/css/Views/login.less"
+  },
+  {
+    "outputFile": "wwwroot/lib/toast/dist/css/toast.css",
+    "inputFile": "wwwroot/lib/toast/dist/css/toast.less"
   }
 ]
