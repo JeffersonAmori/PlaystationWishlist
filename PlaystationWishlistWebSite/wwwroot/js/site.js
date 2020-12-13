@@ -13,8 +13,8 @@ $(document).ready(function () {
     });
 
     if (navigator.canShare) {
-        $("#linkButtonShare").off("click");
-        $("#linkButtonShare").click(function () {
+        $("#navButtonShare").off("click");
+        $("#navButtonShare").click(function () {
             if (navigator.share) {
                 navigator.share({
                     title: "Playstation Wishlist",
