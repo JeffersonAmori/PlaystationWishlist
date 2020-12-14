@@ -8,7 +8,7 @@ namespace PlaystationWishlistWebSite.Controllers
 {
     public class DonationController : Controller
     {
-        public IActionResult ThankYou()
+        public IActionResult Thanks()
         {
             return View();
         }

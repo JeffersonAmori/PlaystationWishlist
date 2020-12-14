@@ -18,5 +18,13 @@
   {
     "outputFile": "wwwroot/lib/toast/dist/css/toast.css",
     "inputFile": "wwwroot/lib/toast/dist/css/toast.less"
+  },
+  {
+    "outputFile": "wwwroot/css/Views/Donation/Thankyou.css",
+    "inputFile": "wwwroot/css/Views/Donation/Thankyou.less"
+  },
+  {
+    "outputFile": "wwwroot/css/Views/Donation/Thanks.css",
+    "inputFile": "wwwroot/css/Views/Donation/Thanks.less"
   }
 ]
