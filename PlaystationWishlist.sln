@@ -31,9 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlist.AutoMap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlistWebSite.Models", "PlaystationWishlistWebSite.Models\PlaystationWishlistWebSite.Models.csproj", "{C5FA5A5A-9913-4EFD-BE8C-A836FD892A42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlistAPI.Models", "PlaystationWishlistAPI.Models\PlaystationWishlistAPI.Models.csproj", "{9191EE14-D852-4859-B252-C381828AF840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlistAPI.Models", "PlaystationWishlistAPI.Models\PlaystationWishlistAPI.Models.csproj", "{9191EE14-D852-4859-B252-C381828AF840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaystationWishlist.EmailSender", "EmailSender\PlaystationWishlist.EmailSender.csproj", "{E460DA9E-053D-49F8-8B57-E6D26D8C4C82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlist.EmailSender", "EmailSender\PlaystationWishlist.EmailSender.csproj", "{E460DA9E-053D-49F8-8B57-E6D26D8C4C82}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaystationWishlistFunctionsOrchestrator", "PlaystationWishlistFunctionsOrchestrator\PlaystationWishlistFunctionsOrchestrator.csproj", "{5FBBB061-949A-47D0-B4C3-B4977FF48C87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,10 @@ Global
 		{E460DA9E-053D-49F8-8B57-E6D26D8C4C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E460DA9E-053D-49F8-8B57-E6D26D8C4C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E460DA9E-053D-49F8-8B57-E6D26D8C4C82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FBBB061-949A-47D0-B4C3-B4977FF48C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FBBB061-949A-47D0-B4C3-B4977FF48C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FBBB061-949A-47D0-B4C3-B4977FF48C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FBBB061-949A-47D0-B4C3-B4977FF48C87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +111,7 @@ Global
 		{C5FA5A5A-9913-4EFD-BE8C-A836FD892A42} = {FBD7AA9E-5F16-452A-9513-8EEB9B45D65A}
 		{9191EE14-D852-4859-B252-C381828AF840} = {FBD7AA9E-5F16-452A-9513-8EEB9B45D65A}
 		{E460DA9E-053D-49F8-8B57-E6D26D8C4C82} = {C70B6BA5-7A46-42C6-9569-30B309BBCEBE}
+		{5FBBB061-949A-47D0-B4C3-B4977FF48C87} = {FD950E5D-F39E-40F8-A8BB-46F5A46F3A9F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8ABC309-DD14-493A-8DFA-14E4FFC74FF6}

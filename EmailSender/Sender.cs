@@ -29,7 +29,7 @@ namespace PlaystationWishlist.EmailSender
             var from = new EmailAddress("jefferson_adr@hotmail.com", "Playstation Wishlist");
             var subject = "PSN game on sale! - Playstation Wishlist";
             var to = new EmailAddress(user.Email, user.Name.Split(" ")[0]);
-            var htmlContent = $"The game <strong>{discountedGame.Name}</strong> is on sale for <strong>{discountedGame.Currency}{discountedGame.FinalPrice}</strong>. <br>Check it out: {discountedGame.Url}";
+            var htmlContent = $"The game <strong>{discountedGame.Name}</strong> is on sale for <strong>{discountedGame.Currency}{discountedGame.FinalPrice}</strong>. <br />Check it out: {discountedGame.Url}";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, string.Empty, htmlContent);
             var response = await client.SendEmailAsync(msg);
         }
