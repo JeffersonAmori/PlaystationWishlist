@@ -12,4 +12,10 @@
     <ProjectReference Include="..\PlaystationWishlist.Infrastructure\PlaystationWishlist.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="email.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
