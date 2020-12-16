@@ -26,5 +26,9 @@
   {
     "outputFile": "wwwroot/css/Views/Donation/Thanks.css",
     "inputFile": "wwwroot/css/Views/Donation/Thanks.less"
+  },
+  {
+    "outputFile": "wwwroot/css/Views/Shared/error404.css",
+    "inputFile": "wwwroot/css/Views/Shared/error404.less"
   }
 ]
