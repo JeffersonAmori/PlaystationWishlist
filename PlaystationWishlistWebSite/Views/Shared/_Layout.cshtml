@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script data-ad-client="ca-pub-5965304686005207" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    @*<script data-ad-client="ca-pub-5965304686005207" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>*@
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     @*<link rel="shortcut icon" href="//.../content/images/favicon.ico" />*@
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -35,16 +35,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Terms">Terms</a>
-                        </li>
-                        <li>
-                            <form action="https://www.paypal.com/donate" method="post" target="_top">
+                        </li>*@
+                        <li class="nav-item">
+                            <form action="https://www.paypal.com/donate" method="post" target="_top" class="container h-100" >
                                 <input type="hidden" name="hosted_button_id" value="AJWWYXCRA4S9S" />
-                                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                                <input type="image" class ="mt-2" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button"/>
                                 <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
                             </form>
 
@@ -60,8 +60,8 @@
             @if (User.Identity.IsAuthenticated)
             {
             <li class="nav-item" data-url="@Url.Action("MyWishlist", "Home")">
-                <button id="navButtonBookmark" class="btn btn-primary btn-block rounded-0 shadow-none">
-                    <span class="fa fa-bookmark"></span>
+                <button id="navButtonFavorite" class="btn btn-primary btn-block rounded-0 shadow-none">
+                    <span class="fa fa-star"></span>
                 </button>
             </li>
             }
@@ -85,7 +85,7 @@
             </li>
             <li class="nav-item" data-url="@Url.Action("Donate", "Home")">
                 <button id="navButtonDonate" class="btn btn-primary btn-block rounded-0 shadow-none">
-                    <span class="fab fa-paypal"></span>
+                    <span class="fa fa-donate"></span>
                 </button>
             </li>
             <li id="navButtonShare" class="nav-item">
@@ -103,7 +103,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.UtcNow.Year - Playstation Wishlist - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.UtcNow.Year - Playstation Wishlist - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> - <a asp-area="" asp-controller="Home" asp-action="Terms">Terms</a>
         </div>
     </footer>
 

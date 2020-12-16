@@ -47,6 +47,9 @@ a {
   background-color: #f2d23a;
   border-color: #f2d23a;
 }
+#navButtonDonate {
+  color: #f2d23a;
+}
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
