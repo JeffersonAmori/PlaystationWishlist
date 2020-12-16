@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using PlaystationWishlist.DataAccess.Models;
 using PlaystationWishlist.DataAccess.Models.Identity;
 using SendGrid;
@@ -20,19 +21,26 @@ namespace PlaystationWishlist.EmailSender
             var to = new EmailAddress(user.Email, user.Name.Split(" ")[0]);
             //var htmlContent = $"The game <strong>{discountedGame.Name}</strong> is on sale for <strong>{discountedGame.Currency}{discountedGame.FinalPrice}</strong>. <br />Check it out: {discountedGame.Url}";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, string.Empty, emailText);
-            var response = await client.SendEmailAsync(msg);
+            await client.SendEmailAsync(msg);
         }
 
         private static string ProcessEmail(PlaystationGame discountedGame)
         {
-            string emailText = File.ReadAllText("email.html")
-                .Replace("{{discountedGameName}}", discountedGame.Name)
-                .Replace("{{discountedGameCurrency}}", discountedGame.Currency)
-                .Replace("{{discountedGameFinalPrice}}", discountedGame.FinalPrice.ToString())
-                .Replace("{{discountedGameImageUrl}}", discountedGame.GameImageUrl)
-                .Replace("{{discountedGameUrl}}", discountedGame.Url);
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "PlaystationWishlist.EmailSender.email.html";
 
-            return emailText;
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string emailText = reader.ReadToEnd()
+                    .Replace("{{discountedGameName}}", discountedGame.Name)
+                    .Replace("{{discountedGameCurrency}}", discountedGame.Currency)
+                    .Replace("{{discountedGameFinalPrice}}", discountedGame.FinalPrice.ToString())
+                    .Replace("{{discountedGameImageUrl}}", discountedGame.GameImageUrl)
+                    .Replace("{{discountedGameUrl}}", discountedGame.Url);
+
+                return emailText;
+            }
         }
     }
 }

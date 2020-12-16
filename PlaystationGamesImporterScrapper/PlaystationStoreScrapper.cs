@@ -36,7 +36,7 @@ namespace PlaystationGamesLoadScrapper
                 foreach (var platform in platforms)
                 {
                     pageNumber = 1;
-                    isLastPage = true;
+                    isLastPage = false;
                     do
                     {
                         var doc = htmlWeb.Load($"{basePsnAddress}/{region}/category/{platform.Value}/{pageNumber++}");
