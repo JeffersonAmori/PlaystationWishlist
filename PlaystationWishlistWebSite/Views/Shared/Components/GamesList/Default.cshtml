@@ -26,8 +26,8 @@
         <tbody style="width: 100%">
             @foreach (var game in @Model.GamesViewModels)
             {
-            <tr style="width: 100%; padding-bottom: 20px">
-                <td rowspan="3" background="@(@game.GameImageUrl + "?w=150")" style="width: 150px;" class="col-4">
+            <tr style="width: 100%; padding-bottom: 20px;">
+                <td rowspan="3" background="@(@game.GameImageUrl + "?w=150")" style="width: 150px; background-size:cover; background-repeat: no-repeat; background-position:center;">
                 </td>
             </tr>
             <tr class="bg-dark" style="width: 100%">
