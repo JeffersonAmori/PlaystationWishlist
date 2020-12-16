@@ -25,12 +25,13 @@ namespace PlaystationWishlist.EmailSender
 
         private static string ProcessEmail(PlaystationGame discountedGame)
         {
-            string emailText = File.ReadAllText("email.html");
-            emailText.Replace("{{discountedGameName}}", discountedGame.Name);
-            emailText.Replace("{{discountedGameCurrency}}", discountedGame.Currency);
-            emailText.Replace("{{discountedGameFinalPrice}}", discountedGame.FinalPrice.ToString());
-            emailText.Replace("{{discountedGameImageUrl}}", discountedGame.GameImageUrl);
-            emailText.Replace("{{discountedGameUrl}}", discountedGame.Url);
+            string emailText = File.ReadAllText("email.html")
+                .Replace("{{discountedGameName}}", discountedGame.Name)
+                .Replace("{{discountedGameCurrency}}", discountedGame.Currency)
+                .Replace("{{discountedGameFinalPrice}}", discountedGame.FinalPrice.ToString())
+                .Replace("{{discountedGameImageUrl}}", discountedGame.GameImageUrl)
+                .Replace("{{discountedGameUrl}}", discountedGame.Url);
+
             return emailText;
         }
     }
