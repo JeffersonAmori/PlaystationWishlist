@@ -1,8 +1,10 @@
 ﻿@using PlaystationWishlistWebSite.HtmlExtensions
 @model PlaystationWishlistWebSite.Models.GamesListViewModel
-
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, PlaystationWishlistWebSite.TagHelpers
+
+<link rel="stylesheet" href="~/css/Components/GamesList/GamesList.min.css" />
+
 <script>
     var addOrRemoveGameOnWishlistUrl = '@Url.Action("AddOrRemoveGameToWishList", "Games")';
 </script>
@@ -20,41 +22,88 @@
             </div>
         </div>
     </div>
-    @if (@Model.GamesViewModels.Any())
-    {
-    <table id="gamesListViewComponentTable" class="table table-bordered col-12" style="padding: 10px">
-        <tbody style="width: 100%">
+    <div class="mainContainer">
+        @if (@Model.GamesViewModels.Any())
+        {
             @foreach (var game in @Model.GamesViewModels)
             {
-            <tr style="width: 100%; padding-bottom: 20px;">
-                <td rowspan="3" background="@(@game.GameImageUrl + "?w=150")" style="width: 150px; background-size:cover; background-repeat: no-repeat; background-position:center;">
-                </td>
-            </tr>
-            <tr class="bg-dark" style="width: 100%">
-                <td colspan="4">
-                    <a class="btn-link text-light font-weight-bold" target="_blank" style="width: 100%" href="@game.Url">@("[" + game.GamePlatform + "] " + game.Name) <span class="fa fa-external-link-alt"></span></a>
-                </td>
-            </tr>
-            <tr style="width: 100%">
-                <td>@(@game.Currency + @game.FinalPrice)</td>
-                <td style="text-decoration: line-through">@(@game.Currency + @game.OriginalPrice)</td>
-                <td>@Html.DisplayFor(m => game.DiscountDescriptor)</td>
-                <td>
-                    <button class="btn btn-wishlist fa @(@game.IsOnUserWishlist ? "btn-remove-from-wishlist" : "btn-add-to-wishlist")" data-game-url="@game.Url">
+        <div class="gameCard">
+            <div class="row">
+                <div class="col">
+                    <img class="gameImage" loading="lazy" src="@(@game.GameImageUrl + "?w=250")" alt="@game.Name"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-block btn-wishlist @(@game.IsOnUserWishlist ? "btn-remove-from-wishlist" : "btn-add-to-wishlist")" data-game-url="@game.Url">
                         <span class="fa  @(@game.IsOnUserWishlist ? "fa-minus" : "fa-plus")"></span>
                     </button>
-                </td>
-            </tr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col gameTitle">
+                    <a class="btn-link text-dark font-weight-bold" target="_blank" style="width: 100%" href="@game.Url">@("[" + game.GamePlatform + "] " + game.Name) <span class="fa fa-external-link-alt"></span></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col finalPrice">
+                    @(@game.Currency + @game.FinalPrice)
+                </div>
+            </div>
+            <div class="row">
+                @if (!string.IsNullOrEmpty(@game.OriginalPrice))
+                {
+                    <div class="col originalPrice">
+                        @(@game.Currency + @game.OriginalPrice)
+                    </div>
+                }
+                else
+                {
+                    <div class="col">
+                        -
+                    </div>
+                }
+            </div>
+        </div>
+
             }
-        </tbody>
-    </table>
-    }
-    else
-    {
-    <h3>No games found.</h3>
-    }
+        }
+        else
+        {
+            <h3>No games found.</h3>
+        }
+        @*<table id="gamesListViewComponentTable" class="table table-bordered col-12" style="padding: 10px">
+                <tbody style="width: 100%">
+                    @foreach (var game in @Model.GamesViewModels)
+                    {
+                        <tr style="width: 100%; padding-bottom: 20px;">
+                            <td rowspan="3" background="@(@game.GameImageUrl + "?w=150")" style="width: 150px; background-size:cover; background-repeat: no-repeat; background-position:center;">
+                            </td>
+                        </tr>
+                        <tr class="bg-dark" style="width: 100%">
+                            <td colspan="4">
+                                <a class="btn-link text-light font-weight-bold" target="_blank" style="width: 100%" href="@game.Url">@("[" + game.GamePlatform + "] " + game.Name) <span class="fa fa-external-link-alt"></span></a>
+                            </td>
+                        </tr>
+                        <tr style="width: 100%">
+                            <td>@(@game.Currency + @game.FinalPrice)</td>
+                            <td style="text-decoration: line-through">@(@game.Currency + @game.OriginalPrice)</td>
+                            <td>@Html.DisplayFor(m => game.DiscountDescriptor)</td>
+                            <td>
+                                <button class="btn btn-wishlist fa @(@game.IsOnUserWishlist ? "btn-remove-from-wishlist" : "btn-add-to-wishlist")" data-game-url="@game.Url">
+                                    <span class="fa  @(@game.IsOnUserWishlist ? "fa-minus" : "fa-plus")"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>*@
+        
+        @*else
+            {
+                <h3>No games found.</h3>
+            }*@
+    </div>
 </div>
-
-
 
 <script defer src="~/js/Components/GamesList.js"></script>

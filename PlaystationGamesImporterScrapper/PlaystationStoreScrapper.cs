@@ -47,9 +47,9 @@ namespace PlaystationGamesLoadScrapper
                         var gameLinks = doc.DocumentNode.Descendants().Where(d => d.Attributes["class"]?.Value == "ems-sdk-product-tile-link");
                         foreach (var link in gameLinks)
                         {
-                            PlaystationGame playstationGame = null;
-
                             var gameUrl = basePsnAddress + link.Attributes["href"].Value;
+                            var gameImageUrl = link.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value?.Contains("ems-sdk-product-tile-image-img#image") ?? false).Attributes["src"].Value;
+
                             var _ = Task.Run(() =>
                             {
                                 int retryCount = 0;
@@ -77,8 +77,8 @@ namespace PlaystationGamesLoadScrapper
                                     var gameOriginalPrice = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#originalPrice")?.InnerText;
                                     var gameDiscountDescriptor = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "mfeCtaMain#offer0#discountDescriptor")?.InnerText;
                                     var gameCurrency = currencyRegex.Match(gameFinalPrice ?? string.Empty).Value;
-                                    var gameImageUrl = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#heroImage#preview")?.Attributes["src"]?.Value?.Split("?")[0] ??
-                                                       gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#tileImage#preview")?.Attributes["src"]?.Value?.Split("?")[0];
+                                    //var gameImageUrl = gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#heroImage#preview")?.Attributes["src"]?.Value?.Split("?")[0] ??
+                                    //                   gamePage.DocumentNode.Descendants().FirstOrDefault(d => d.Attributes["data-qa"]?.Value == "gameBackgroundImage#tileImage#preview")?.Attributes["src"]?.Value?.Split("?")[0];
                                     var gamePlatform = platform.Key;
 
                                     gamesList.Add(new PlaystationGame(gameName, gameFinalPrice, gameOriginalPrice, gameDiscountDescriptor, gameUrl, region, gameCurrency, gameImageUrl, gamePlatform));

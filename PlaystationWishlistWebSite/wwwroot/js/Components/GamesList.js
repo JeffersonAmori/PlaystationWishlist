@@ -1,22 +1,4 @@
-﻿//function configureInitialStateOfButtons() {
-//    if ($(this).hasClass("add-to-wishlist")) {
-//        $(this).children().addClass("fa-plus");
-//        $(this).children().removeClass("fa-minus");
-//        $(this).addClass("btn-primary");
-//        $(this).addClass("add-to-wishlist");
-//        $(this).removeClass("btn-danger");
-//    } else {
-//        $(this).children().addClass("fa-minus");
-//        $(this).children().removeClass("fa-plus");
-//        $(this).addClass("btn-danger");
-//        $(this).addClass("remove-from-wishlist");
-//        $(this).removeClass("btn-primary");
-//    }
-
-//    $(this).prop("disabled", false);
-//};
-
-function configureInitialStateOfButtons() {
+﻿function configureInitialStateOfButtons() {
     if ($(this).hasClass("btn-add-to-wishlist")) {
         $(this).children().addClass("fa-plus");
         $(this).children().removeClass("fa-minus");
