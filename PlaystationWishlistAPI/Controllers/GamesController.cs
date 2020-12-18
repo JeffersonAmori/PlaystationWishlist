@@ -44,20 +44,32 @@ namespace PlaystationWishlistAPI.Controllers
             }
             else
             {
-                var gamesOnUserWishlist =
-                    _playstationWishlistDbContext.WishlistItems.Where(w => w.UserId == userId.Value);
 
                 playstationGames = string.IsNullOrEmpty(gameName)
                     ? _playstationWishlistDbContext.PlaystationGames.Where(g => g.OriginalPrice != null && g.Region == "en-US").Take(20)
                     : _playstationWishlistDbContext.PlaystationGames.Where(g => g.Name.Contains(gameName ?? string.Empty) && g.Region == "en-US").Take(20);
 
                 mappedPlaystationGames = _mapper.Map<List<PlaystationGame>>(playstationGames);
-                mappedPlaystationGames = mappedPlaystationGames.Select(psnGame =>
+
+                if (userId.HasValue)
                 {
-                    psnGame.IsOnUserWishlist =
-                        gamesOnUserWishlist.Any(wishlistItem => wishlistItem.GameUrl == psnGame.Url);
-                    return psnGame;
-                }).ToList();
+                    var gamesOnUserWishlist =
+                        _playstationWishlistDbContext.WishlistItems.Where(w => w.UserId == userId.Value);
+                    mappedPlaystationGames = mappedPlaystationGames.Select(psnGame =>
+                    {
+                        psnGame.IsOnUserWishlist =
+                            gamesOnUserWishlist.Any(wishlistItem => wishlistItem.GameUrl == psnGame.Url);
+                        return psnGame;
+                    }).ToList();
+                }
+                else
+                {
+                    mappedPlaystationGames = mappedPlaystationGames.Select(psnGame =>
+                    {
+                        psnGame.IsOnUserWishlist = false;
+                        return psnGame;
+                    }).ToList();
+                }
             }
 
 
