@@ -28,9 +28,9 @@
             @foreach (var game in @Model.GamesViewModels)
             {
         <div class="gameCard">
-            <div class="row">
+            <div class="row gameImageContainer">
                 <div class="col">
-                    <img class="gameImage" loading="lazy" src="@(@game.GameImageUrl + "?w=250")" alt="@game.Name"/>
+                    <img class="gameImage flex-fill" loading="lazy" src="@(@game.GameImageUrl + "?w=250")" alt="@game.Name"/>
                 </div>
             </div>
             <div class="row">

@@ -1,8 +1,13 @@
 ﻿/*@color-secondary: #e0c941;*/
 .mainContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 30px;
+}
+@media only screen and (min-width: 768px) {
+  .mainContainer {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 }
 .gameTitle {
   text-align: left;
@@ -16,9 +21,13 @@
   text-align: left;
   text-decoration: line-through;
 }
+.gameImageContainer {
+  text-align: center;
+}
 .gameImage {
-  max-width: 100%;
-  max-height: 100%;
+  /*max-width: 100%;*/
+  /*max-height: 40vh;*/
+  width: 100%;
 }
 .btn-wishlist {
   border-radius: 0;
