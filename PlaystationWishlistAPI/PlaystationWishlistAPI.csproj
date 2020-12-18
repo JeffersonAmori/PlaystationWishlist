@@ -3,10 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>eeee0b0f-7d36-4d57-8a54-3bbfe5fc7c93</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/74b7e62e-3329-4d47-aa3d-619f3c473de8/resourceGroups/PlaystationWishlist/providers/microsoft.insights/components/PlaystatonWishlistApplicationInsight</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.10">
       <PrivateAssets>all</PrivateAssets>

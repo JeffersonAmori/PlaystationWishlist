@@ -28,6 +28,7 @@ namespace PlaystationWishlistAPI
                 options.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
             });
             services.AddAutoMapper(typeof(PlaystationGameProfile).Assembly);
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

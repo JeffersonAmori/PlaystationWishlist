@@ -4,33 +4,37 @@
     $("#btnLogin").hide();
     $("#navButtonLogin").addClass("active");
 
-    window.onbeforeunload = function(){
+    window.onbeforeunload = function () {
         $("#btnLogin").show();
     };
 </script>
 
 <div class="row my-lg-5 mx-lg-4">
-    <form class="flex-fill">
-        <div class="col-lg-12">
-            <h5>Sign in using</h5>
-        </div>
-        <div class="flex-fill">
-            <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Google" class="btn btn-block btn-social-login btn-google">
-                <span class="fab fa-google"></span> Google
-            </button>
-        </div>
-        <div class="flex-fill">
-            <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Facebook" class="btn btn-block btn-social-login btn-facebook">
-                <span class="fab fa-facebook-f"></span> Facebook
-            </button>
-        </div>
-        <div class="flex-fill">
-            <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Microsoft" class="btn btn-block btn-social-login btn-microsoft">
-                <span class="fab fa-microsoft"></span> Microsoft
-            </button>
-        </div>
+    <div class="container">
+        <form class="flex-fill">
+            <div>
+                <h5>Sign in using</h5>
+            </div>
+            <div class="flex-fill">
+                <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Google" class="btn btn-block btn-social-login btn-google">
+                    <span class="fab fa-google"></span> Google
+                </button>
+            </div>
+            <div class="flex-fill">
+                <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Facebook" class="btn btn-block btn-social-login btn-facebook">
+                    <span class="fab fa-facebook-f"></span> Facebook
+                </button>
+            </div>
+            <div class="flex-fill">
+                <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Microsoft" class="btn btn-block btn-social-login btn-microsoft">
+                    <span class="fab fa-microsoft"></span> Microsoft
+                </button>
+            </div>
+        </form>
+    </div>
 
-        <div class="flex-fill">
+    <div class="container">
+        <div class="pt-4">
             <h5>Coming soon</h5>
         </div>
         <div class="flex-fill">
@@ -39,14 +43,14 @@
             </button>
         </div>
         <div class="flex-fill">
+            <button disabled type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Reddit" class="btn btn-block btn-social-login btn-reddit">
+                <span class="fab fa-reddit-alien"></span> Reddit
+            </button>
+        </div>
+        <div class="flex-fill">
             <button disabled type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Twitter" class="btn btn-block btn-social-login btn-twitter">
                 <span class="fab fa-twitter"></span> Twitter
             </button>
         </div>
-        <div class="flex-fill">
-            <button disabled type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Reddit" class="btn btn-block btn-social-login btn-reddit">
-               <span class="fab fa-reddit-alien"></span> Reddit
-            </button>
-        </div>
-    </form>
+    </div>
 </div>
