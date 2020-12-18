@@ -1,6 +1,12 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
+Sentry.init({
+    dsn: 'https://d520ae74303e44c699be02f351a4b339@o493272.ingest.sentry.io/5561951',
+    tracesSampleRate: 1.0,
+});
+
+
 // Write your JavaScript code.
 $("#loader-wrapper").show();
 
