@@ -33,7 +33,7 @@ namespace PlaystationWishlistWebSite.Controllers
 
                 if (!User.Identity.IsAuthenticated)
                 {
-                    return new { Status = "NOK", Message = "User must be authenticated." };
+                    return new { Status = "NOK", Message = "You must be logged in to add games to your wishlist." };
                 }
 
                 var httpClient = _httpClientFactory.CreateClient();
