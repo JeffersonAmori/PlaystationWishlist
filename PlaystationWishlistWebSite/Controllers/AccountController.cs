@@ -42,6 +42,24 @@ namespace PlaystationWishlistWebSite.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet, Route("[controller]/ExternalLoginGoogle")]
+        public IActionResult ExternalLoginGoogle(string returnUrl = null)
+        {
+            return LocalRedirect(Url.Action(nameof(ExternalLogin), "Account", new { returnUrl, provider = "Google" }));
+        }
+
+        [HttpGet, Route("[controller]/ExternalLoginFacebook")]
+        public IActionResult ExternalLoginFacebook(string returnUrl = null)
+        {
+            return LocalRedirect(Url.Action(nameof(ExternalLogin), "Account", new { returnUrl, provider = "Facebook" }));
+        }
+
+        [HttpGet, Route("[controller]/ExternalLoginMicrosoft")]
+        public IActionResult ExternalLoginMicrosoft(string returnUrl = null)
+        {
+            return LocalRedirect(Url.Action(nameof(ExternalLogin), "Account", new { returnUrl, provider = "Microsoft" }));
+        }
+
         [HttpGet, Route("[controller]/ExternalLogin")]
         public IActionResult ExternalLogin(string returnUrl = null, string provider = "Google")
         {

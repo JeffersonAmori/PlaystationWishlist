@@ -4,7 +4,7 @@
     $("#btnLogin").hide();
     $("#navButtonLogin").addClass("active");
 
-    window.onbeforeunload = function () {
+    window.onunload = function () {
         $("#btnLogin").show();
     };
 </script>
@@ -16,17 +16,17 @@
                 <h5>Sign in using</h5>
             </div>
             <div class="flex-fill">
-                <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Google" class="btn btn-block btn-social-login btn-google">
+                <button type="submit" asp-action="ExternalLoginGoogle" asp-controller="Account" class="btn btn-block btn-social-login btn-google">
                     <span class="fab fa-google"></span> Google
                 </button>
             </div>
             <div class="flex-fill">
-                <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Facebook" class="btn btn-block btn-social-login btn-facebook">
+                <button type="submit" asp-action="ExternalLoginFacebook" asp-controller="Account" class="btn btn-block btn-social-login btn-facebook">
                     <span class="fab fa-facebook-f"></span> Facebook
                 </button>
             </div>
             <div class="flex-fill">
-                <button type="submit" asp-action="ExternalLogin" asp-controller="Account" asp-route-provider="Microsoft" class="btn btn-block btn-social-login btn-microsoft">
+                <button type="submit" asp-action="ExternalLoginMicrosoft" asp-controller="Account"  class="btn btn-block btn-social-login btn-microsoft">
                     <span class="fab fa-microsoft"></span> Microsoft
                 </button>
             </div>
