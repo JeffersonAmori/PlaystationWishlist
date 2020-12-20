@@ -45,7 +45,6 @@ $(document).ready(function () {
 
     $("#btnGameSearch").click(function () {
         $("#loader-wrapper").show();
-        //$("#gamesListViewComponentTable").replaceWith($("#loader-wrapper"));
 
         var url = $(this).data("request-url");
         $.ajax({
@@ -80,6 +79,7 @@ $(document).ready(function () {
                         delay: 3000,
                         pause_on_hover: true
                     });
+                    document.getElementById("navButtonLogin").click();
                 } else {
                     var text = remove ? "Removed from wishlist" : "Added to wishlist";
                     $.toast({
