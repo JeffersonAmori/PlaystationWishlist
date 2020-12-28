@@ -70,11 +70,13 @@ namespace PlaystationGamesImporterWebJob
             services.AddTransient(typeof(IPlaystationWishlistDbContext), typeof(PlaystationWishlistContext));
             services.AddTransient(typeof(IKeyVaultService), typeof(KeyVaultService));
             services.AddAutoMapper(typeof(PlaystationGameProfile).Assembly);
-            services.AddDbContext<PlaystationWishlistContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
+            services.AddDbContext<PlaystationWishlistContext>(options =>
+            {
+                options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString") ?? Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
             });
-            services.AddDbContext<IdentityAppContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
+            services.AddDbContext<IdentityAppContext>(options =>
+            {
+                options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString") ?? Configuration.GetConnectionString("ConnectionString") ?? throw new ArgumentNullException("Connection string not configurated."));
             });
 
             return services;
