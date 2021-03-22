@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	         xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PlaystationWishlistApp.Views.HomePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView
+                BackgroundColor="Transparent"
+                ItemsSource="{Binding GameList}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout 
+                            BackgroundColor="Transparent"
+                            Padding="10">
+                            <ffimageloading:CachedImage 
+                                Source="{Binding GameImageUrl}"/>
+                            <Button 
+                                BackgroundColor="green"
+                                Command="{Binding AddToWithlistCommand}"
+                                CommandParameter="{Binding Url}"
+                                FontSize="Title"
+                                FontAttributes="Bold"
+                                Margin="0, -6"
+                                Padding="0"
+                                Text="+" />
+
+                            <Label
+                                FontSize="Medium"
+                                FontAttributes="Bold"
+                                Text="{Binding Name}" />
+                            <Label
+                                FontSize="Small"
+                                Text="{Binding FinalPrice}" />
+                            <Label
+                                FontSize="Small"
+                                TextDecorations="Strikethrough"
+                                Text="{Binding OriginalPrice}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

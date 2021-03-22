@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PlaystationWishlistApp.Controls"
+             x:Class="PlaystationWishlistApp.Views.AboutPage">
+    <ContentPage.Content>
+        <StackLayout Padding="15">
+            <Label 
+                FontSize="Large"
+                Text="This is a wishlist service for the Playstation Store. It works by sending you e-mails about your wishlist when the games are on sale."
+                HorizontalOptions="CenterAndExpand" />
+            <Label 
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                Text="This service is NOT affiliated to Sony in any way and is provided as-is."/>
+            <Label 
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                Text="The prices are refreshed once a day, so there may be discrepancies between the prices shown here and on the Playstation Store."/>
+            <local:HyperlinkLabel 
+                FontSize="Large"
+                Text="Privacy policy"
+                Url="https://playstationwishlist.com/Home/Privacy"/>
+            <local:HyperlinkLabel 
+                FontSize="Large"
+                Text="Terms of use"
+                Url="https://playstationwishlist.com/Home/Terms"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
