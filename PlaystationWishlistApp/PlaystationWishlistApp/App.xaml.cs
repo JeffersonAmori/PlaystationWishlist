@@ -12,7 +12,7 @@ namespace PlaystationWishlistApp
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+
             MainPage = new AppShell();
         }
 
